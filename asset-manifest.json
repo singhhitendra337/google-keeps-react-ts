@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/google-keeps-react-ts/static/css/main.70dda8f6.css",
+    "main.js": "/google-keeps-react-ts/static/js/main.76d982b0.js",
+    "static/js/787.181723b9.chunk.js": "/google-keeps-react-ts/static/js/787.181723b9.chunk.js",
+    "index.html": "/google-keeps-react-ts/index.html",
+    "main.70dda8f6.css.map": "/google-keeps-react-ts/static/css/main.70dda8f6.css.map",
+    "main.76d982b0.js.map": "/google-keeps-react-ts/static/js/main.76d982b0.js.map",
+    "787.181723b9.chunk.js.map": "/google-keeps-react-ts/static/js/787.181723b9.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.70dda8f6.css",
+    "static/js/main.76d982b0.js"
+  ]
+}
