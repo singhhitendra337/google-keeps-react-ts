@@ -1,26 +1,6 @@
 import { useReducer } from "react";
 import { addNote, deleteNote, updateNote } from "../helpers";
-
-export interface StateInterface {
-  title: string;
-  description: string;
-  image: string;
-  id: string;
-  color: string;
-}
-
-export interface PayloadInterface {
-  title?: string;
-  description?: string;
-  image?: string;
-  id: string;
-  color?: string;
-}
-
-export interface ActionInterface {
-  type: string;
-  payload: PayloadInterface;
-}
+import { ActionInterface, StateInterface } from "../interfaces/interfaces";
 
 const useData = (
   initialValue: StateInterface[] | []

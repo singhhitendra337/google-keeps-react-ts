@@ -3,34 +3,18 @@ import Header from "./components/Header";
 import Navbar from "./components/Navbar";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Reminder from "./components/Reminder";
-import Notes, { notesprops } from "./components/Notes";
+import Notes from "./components/Notes";
 import Wrapper from "./components/Wrapper";
 import { useState } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import Modal from "./components/Modal";
 import DataContext from "./store/data-context";
-import useData, { StateInterface } from "./hooks/useData";
-
-export interface datainteface {
-  title: string;
-  description: string;
-  image: string;
-  id: string;
-  color: string;
-}
-
-export interface ModalInterface {
-  isOpen: boolean;
-  modalData: StateInterface | null;
-}
+import { ModalInterface } from "./interfaces/interfaces";
 
 function App() {
   const [hide, setHide] = useState(false);
-  const [data, setData] = useState<datainteface[]>([]);
-  // const [data, setData] = useLocalStorage([]);
-  const [notesData, notesDispatch] = useLocalStorage([]);
 
-  //const [notesData, notesDispatch] = useData();
+  const [notesData, notesDispatch] = useLocalStorage([]);
 
   const [modal, setModal] = useState<ModalInterface>({
     isOpen: false,
@@ -45,10 +29,7 @@ function App() {
     <div className="App">
       <DataContext.Provider
         value={{
-          data,
-          setData,
           modal,
-          setModal,
           modalChangeHanlder,
           notesData,
           notesDispatch,

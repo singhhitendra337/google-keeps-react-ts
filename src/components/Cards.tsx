@@ -1,11 +1,11 @@
 import "./styles/Cards.css";
-import { notesprops } from "./Notes";
 import Card from "./Card";
-import DataContext, { DataContextInterface } from "../store/data-context";
+import DataContext from "../store/data-context";
 import { useContext } from "react";
+import { DataContextInterface } from "../interfaces/interfaces";
 
 const Cards = () => {
-  const { data, notesData } = useContext(DataContext) as DataContextInterface;
+  const { notesData } = useContext(DataContext) as DataContextInterface;
 
   return (
     <div className="cards">

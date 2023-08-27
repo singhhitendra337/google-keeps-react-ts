@@ -1,17 +1,10 @@
-import { useEffect, useState } from "react";
-import useData, { ActionInterface, StateInterface } from "./useData";
+import { useEffect } from "react";
+import useData from "./useData";
+import { ActionInterface, StateInterface } from "../interfaces/interfaces";
 
 const useLocalStorage = (
   initialValue: []
 ): [StateInterface[], React.Dispatch<ActionInterface>] => {
-  const getData = () => {
-    const val = localStorage.getItem("data");
-    if (val) return JSON.parse(val);
-
-    return initialValue;
-  };
-
-  // const [state, setState] = useState(getData);
   const [notesData, notesDispatch] = useData(
     localStorage.getItem("data")
       ? JSON.parse(localStorage.getItem("data") as string)

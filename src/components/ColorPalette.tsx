@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import "./styles/ColorPalette.css";
-import { datainteface } from "../App";
-import DataContext, { DataContextInterface } from "../store/data-context";
+import DataContext from "../store/data-context";
+import { DataContextInterface } from "../interfaces/interfaces";
 
 const ColorPalette = ({ cardId }: { cardId: string }) => {
   const [tray, setTray] = useState(false);
@@ -37,20 +37,6 @@ const ColorPalette = ({ cardId }: { cardId: string }) => {
     event.stopPropagation();
     console.log("reacheed here");
     const targetDiv = event.target as HTMLDivElement;
-    // setData((prevData) => {
-    //   const newData = [...prevData];
-    //   const findCard = newData.find((d) => d.id === cardId) as datainteface;
-
-    //   // Cast event.target to HTMLDivElement
-
-    //   // console.log(event.target.dataset.color);
-
-    //   Object.assign(findCard, { color: targetDiv.dataset.color });
-
-    //   console.log(newData);
-
-    //   return newData;
-    // });
 
     notesDispatch({
       type: "update",

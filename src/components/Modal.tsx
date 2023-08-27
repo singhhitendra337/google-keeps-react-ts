@@ -1,25 +1,17 @@
 import { useContext, useEffect, useState } from "react";
 import "./styles/Modal.css";
-import { datainteface } from "../App";
-import DataContext, { DataContextInterface } from "../store/data-context";
+import DataContext from "../store/data-context";
 import NoteImage from "./NoteImage";
 import NoteOptions from "./NoteOptions";
-import { StateInterface } from "../hooks/useData";
+import { DataContextInterface, StateInterface } from "../interfaces/interfaces";
 
 const Modal = () => {
-  const { modal, setModal, modalChangeHanlder, notesDispatch } = useContext(
+  const { modal, modalChangeHanlder, notesDispatch } = useContext(
     DataContext
   ) as DataContextInterface;
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      //  if (ref.current && !ref.current.contains(event.target)) {
-      // console.log("ref", ref.current);
-      // console.log("target", event.target);
-      // console.log(ref.current.contains(event.target));
-      // console.log(tray);
-
       console.log("modal remove triggerd window");
-      //   setModal({ isOpen: false, modalData: null });
 
       modalChangeHanlder({ isOpen: false, modalData: null });
     };
@@ -62,36 +54,6 @@ const Modal = () => {
             rows={5}
             value={modalDescription}
           ></textarea>
-
-          {/* <div className="modal-bottom-container">
-          <button
-            id="modal-save"
-            className="save"
-            style={{ marginLeft: 10 }}
-            onClick={(event) => {
-              event.stopPropagation();
-              console.log("inside modal save", modalTitle, modalDescription);
-              notesDispatch({
-                type: "update",
-                payload: {
-                  id: modal.modalData?.id as string,
-                  title: modalTitle,
-                  description: modalDescription,
-                },
-              });
-            }}
-          >
-            <span className="material-symbols-outlined">save</span>
-          </button>
-
-          <button
-            id="modal-delete"
-            className="delete"
-            style={{ marginRight: 10 }}
-          >
-            <span className="material-symbols-sharp">delete</span>
-          </button>
-        </div> */}
         </div>
         <div className="modal-options" style={{ display: "flex" }}>
           <div style={{ width: "70%" }}>
@@ -100,7 +62,11 @@ const Modal = () => {
           <button
             id={`modal-save ${modal.modalData?.id}`}
             className="save"
-            style={{ marginLeft: 136, background: "transparent" }}
+            style={{
+              marginLeft: 136,
+              background: "transparent",
+              cursor: "pointer",
+            }}
             onClick={(event) => {
               event.stopPropagation();
               console.log("inside modal save", modalTitle, modalDescription);

@@ -1,10 +1,9 @@
 import "./styles/Cards.css";
-import { notesprops } from "./Notes";
 import Card from "./Card";
 import React from "react";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
-const CardMasonary = ({ data, setData, setModal }: notesprops) => {
+const CardMasonary = () => {
   return (
     <div style={{ width: "100%" }}>
       {/* <ResponsiveMasonry

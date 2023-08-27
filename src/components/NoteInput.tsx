@@ -8,26 +8,16 @@ import {
 } from "react";
 
 import "./styles/Notes.css";
-import { datainteface } from "../App";
-import DataContext, { DataContextInterface } from "../store/data-context";
-
-interface notesprops {
-  data: datainteface[];
-  setData: React.Dispatch<React.SetStateAction<datainteface[]>>;
-}
+import DataContext from "../store/data-context";
+import { DataContextInterface } from "../interfaces/interfaces";
 
 const NoteInput = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [imageData, setImageData] = useState<FileList | null>(null);
   const [showDetails, setShowDetails] = useState(false);
-  // const [pinned, setPinned] = useState(false);
 
-  // const { setData, setPinnedData } = useContext(DataContext);
-
-  const { setData, notesDispatch } = useContext(
-    DataContext
-  ) as DataContextInterface;
+  const { notesDispatch } = useContext(DataContext) as DataContextInterface;
 
   const titleChangeHandler = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => setTitle(event.target.value),
@@ -36,12 +26,6 @@ const NoteInput = () => {
 
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
-      //  if (ref.current && !ref.current.contains(event.target)) {
-      // console.log("ref", ref.current);
-      // console.log("target", event.target);
-      // console.log(ref.current.contains(event.target));
-      // console.log(tray);
-
       console.log("triggerd window");
       setShowDetails(false);
     };
@@ -66,13 +50,6 @@ const NoteInput = () => {
     const id = Math.floor(Math.random() * 1000 + 5).toString();
 
     if (!imageData) {
-      // setData((prevState) => {
-      //   return [
-      //     ...prevState,
-      //     { title, description, id, color: "white", image: "" },
-      //   ];
-      // });
-
       notesDispatch({
         type: "add",
         payload: { title, description, id, color: "white", image: "" },
@@ -83,7 +60,6 @@ const NoteInput = () => {
       setTitle("");
       setDescription("");
       setImageData(null);
-      // setPinned(false);
     } else {
       const file = imageData[0];
       const fileReader = new FileReader();
@@ -96,13 +72,6 @@ const NoteInput = () => {
         if (!event.target) return;
         const imageUrl = event.target.result as string;
 
-        // setData((prevState) => {
-        //   return [
-        //     ...prevState,
-        //     { title, description, id, color: "white", image: imageUrl },
-        //   ];
-        // });
-
         notesDispatch({
           type: "add",
           payload: { title, description, id, color: "white", image: imageUrl },
@@ -113,7 +82,6 @@ const NoteInput = () => {
         setTitle("");
         setDescription("");
         setImageData(null);
-        //  setPinned(false);
       };
     }
   };

@@ -1,8 +1,8 @@
 import { ChangeEvent, useContext, useState } from "react";
-import { StateInterface } from "../hooks/useData";
 import "./styles/NoteOptions.css";
-import DataContext, { DataContextInterface } from "../store/data-context";
+import DataContext from "../store/data-context";
 import ColorPalette from "./ColorPalette";
+import { DataContextInterface, StateInterface } from "../interfaces/interfaces";
 
 const NoteOptions = ({ card }: { card: StateInterface }) => {
   const { notesDispatch } = useContext(DataContext) as DataContextInterface;
@@ -28,14 +28,14 @@ const NoteOptions = ({ card }: { card: StateInterface }) => {
         delete
       </div>
 
+      <ColorPalette cardId={card.id} />
+
       <div
         className="material-symbols-outlined note-icon "
         onClick={copyHandler}
       >
         file_copy
       </div>
-
-      <ColorPalette cardId={card.id} />
 
       <div className="img-container">
         <label

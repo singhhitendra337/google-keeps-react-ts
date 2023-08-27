@@ -1,4 +1,4 @@
-import { PayloadInterface, StateInterface } from "../hooks/useData";
+import { PayloadInterface, StateInterface } from "../interfaces/interfaces";
 
 export const findNote = (state: StateInterface[], id: string) => {
   const foundNote = state.find((c) => c.id === id);
