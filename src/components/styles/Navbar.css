@@ -1,0 +1,47 @@
+:root {
+  --bg-color: white;
+}
+
+.navbar {
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+
+  padding: 15px;
+  padding-left: 25px;
+  border-top-right-radius: 25px;
+  border-bottom-right-radius: 25px;
+  background-color: var(--bg-color);
+}
+
+/* #f1f3f4  for gray background on hover */
+.nav-item:hover {
+  --bg-color: #feefc3;
+  cursor: pointer;
+}
+
+.nav-text {
+  margin-left: 20px;
+  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-size: 14px;
+  overflow: hidden;
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.25rem;
+  color: #202124;
+  width: 200px;
+}
+
+.hide {
+  display: none;
+}
+
+.nav-item-border {
+  border-radius: 29px;
+  margin-left: 10px;
+  padding-left: 15px;
+}

@@ -1,0 +1,26 @@
+.color-button {
+  position: relative;
+}
+
+.color-box {
+  border-radius: 30px;
+  border: none;
+  width: 30px;
+  height: 30px;
+  margin: 2px;
+  cursor: pointer;
+}
+
+.color-tray {
+  display: flex;
+  left: -73px;
+  height: 50px;
+  position: absolute;
+  top: 30px;
+  border: none;
+  background-color: white;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  border-radius: 8px;
+}

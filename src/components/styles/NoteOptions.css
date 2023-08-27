@@ -1,0 +1,26 @@
+.note-option-container {
+  display: flex;
+  width: 100%;
+  color: #5f6368;
+  visibility: var(--note-options-visibility);
+  justify-content: space-between;
+  background: transparent;
+  padding: 3px;
+}
+
+.note-icon {
+  margin: 5px;
+  font-size: 20px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.note-icon:hover {
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  color: black;
+}
