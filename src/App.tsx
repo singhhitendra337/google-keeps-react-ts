@@ -16,6 +16,8 @@ function App() {
 
   const [notesData, notesDispatch] = useLocalStorage([]);
 
+  const [searchString, setSearchString] = useState("");
+
   const [modal, setModal] = useState<ModalInterface>({
     isOpen: false,
     modalData: null,
@@ -23,6 +25,14 @@ function App() {
 
   const modalChangeHanlder = (payload: ModalInterface) => {
     setModal(payload);
+  };
+
+  const searchStringChangeHandler = (pattern: string) => {
+    setSearchString(pattern);
+  };
+
+  const toggleHide = () => {
+    setHide((prevHide) => !prevHide);
   };
 
   return (
@@ -33,9 +43,13 @@ function App() {
           modalChangeHanlder,
           notesData,
           notesDispatch,
+          searchString,
         }}
       >
-        <Header setHide={setHide} />
+        <Header
+          toggleHide={toggleHide}
+          searchStringChangeHandler={searchStringChangeHandler}
+        />
 
         <Router>
           <Wrapper>

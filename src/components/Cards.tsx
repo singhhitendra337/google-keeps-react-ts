@@ -5,11 +5,20 @@ import { useContext } from "react";
 import { DataContextInterface } from "../interfaces/interfaces";
 
 const Cards = () => {
-  const { notesData } = useContext(DataContext) as DataContextInterface;
+  const { notesData, searchString } = useContext(
+    DataContext
+  ) as DataContextInterface;
+
+  const filteredNotesData = notesData.filter((notes) => {
+    return (
+      notes.title.toLowerCase().includes(searchString.toLowerCase()) ||
+      notes.description.toLowerCase().includes(searchString.toLowerCase())
+    );
+  });
 
   return (
     <div className="cards">
-      {notesData.map((card) => (
+      {filteredNotesData.map((card) => (
         <Card key={card.id} card={card} />
       ))}
     </div>

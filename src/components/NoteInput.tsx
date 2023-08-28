@@ -89,32 +89,13 @@ const NoteInput = () => {
   return (
     <div className="top-container">
       <form className="form" onSubmit={submitHandler}>
-        {!showDetails ? (
-          <div className="input-container">
-            <input
-              type="text"
-              id="title"
-              placeholder="Take a note..."
-              onClick={(event) => {
-                event.stopPropagation();
-                setShowDetails(true);
-              }}
-              value={title}
-            />
-            {/* <div
-              className="material-symbols-outlined gray-color"
-              style={{ cursor: "pointer", color: "#a7a1a1" }}
-            >
-              check_box
-            </div> */}
-          </div>
-        ) : (
-          <div
-            className="newDiv"
-            onClick={(event) => {
-              event.stopPropagation();
-            }}
-          >
+        <div
+          className="newDiv"
+          onClick={(event) => {
+            event.stopPropagation();
+          }}
+        >
+          {showDetails ? (
             <input
               type="text"
               id="titlenew"
@@ -123,14 +104,21 @@ const NoteInput = () => {
               onChange={titleChangeHandler}
               value={title}
             />
-            <input
-              type="text"
-              id="description"
-              className="input2"
-              placeholder="Take a Note..."
-              onChange={(event) => setDescription(event.target.value)}
-              value={description}
-            />
+          ) : null}
+
+          <input
+            type="text"
+            id="description"
+            className="input2"
+            placeholder="Take a Note..."
+            onChange={(event) => setDescription(event.target.value)}
+            onClick={(event) => {
+              event.stopPropagation();
+              setShowDetails(true);
+            }}
+            value={description}
+          />
+          {showDetails ? (
             <div className="input-img-container">
               <label htmlFor="input-img" className="file-label">
                 <span
@@ -160,8 +148,8 @@ const NoteInput = () => {
                 Save
               </button>
             </div>
-          </div>
-        )}
+          ) : null}
+        </div>
       </form>
     </div>
   );

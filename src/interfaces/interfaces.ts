@@ -32,4 +32,5 @@ export interface DataContextInterface {
   notesData: StateInterface[];
   notesDispatch: React.Dispatch<ActionInterface>;
   modalChangeHanlder: (payload: ModalInterface) => void;
+  searchString: string;
 }

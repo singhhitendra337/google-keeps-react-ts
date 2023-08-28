@@ -1,19 +1,19 @@
-import { ReactNode } from "react";
 import "./styles/Header.css";
 
-interface headerprops {
-  setHide: React.Dispatch<React.SetStateAction<boolean>>;
-  children?: ReactNode;
-}
-
-const Header = ({ setHide }: headerprops) => {
+const Header = ({
+  toggleHide,
+  searchStringChangeHandler,
+}: {
+  toggleHide: () => void;
+  searchStringChangeHandler: (pattern: string) => void;
+}) => {
   return (
     <header>
       <div className="header-container">
         <div className="left-header">
           <div
             className="material-symbols-outlined"
-            onClick={() => setHide((prevHide) => !prevHide)}
+            onClick={() => toggleHide()}
             style={{ cursor: "pointer", color: "#7d7d7d " }}
           >
             {" "}
@@ -37,7 +37,14 @@ const Header = ({ setHide }: headerprops) => {
             >
               search
             </div>
-            <input type="text" className="search" placeholder="Search" />
+            <input
+              type="text"
+              className="search"
+              placeholder="Search"
+              onChange={(event) =>
+                searchStringChangeHandler(event.target.value)
+              }
+            />
           </div>
           <div className="mid-header-icons">
             <div
