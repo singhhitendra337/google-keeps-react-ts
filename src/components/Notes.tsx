@@ -2,7 +2,7 @@ import "./styles/Notes.css";
 import NoteInput from "./NoteInput";
 import Cards from "./Cards";
 
-const Notes = () => {
+const Notes = ({ hide }: { hide: boolean }) => {
   return (
     <div
       className="notes-wrapper"
@@ -11,6 +11,7 @@ const Notes = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        marginLeft: hide ? 0 : 200,
       }}
     >
       <NoteInput />

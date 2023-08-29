@@ -5,6 +5,7 @@
 .navbar {
   display: flex;
   flex-direction: column;
+  position: fixed;
 }
 
 .nav-item {

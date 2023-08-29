@@ -3,7 +3,11 @@ import "./styles/ColorPalette.css";
 import DataContext from "../store/data-context";
 import { DataContextInterface } from "../interfaces/interfaces";
 
-const ColorPalette = ({ cardId }: { cardId: string }) => {
+const ColorPalette = ({
+  colorHandler,
+}: {
+  colorHandler: (color: string) => void;
+}) => {
   const [tray, setTray] = useState(false);
   const colors = [
     "#f39f76",
@@ -38,10 +42,12 @@ const ColorPalette = ({ cardId }: { cardId: string }) => {
     console.log("reacheed here");
     const targetDiv = event.target as HTMLDivElement;
 
-    notesDispatch({
-      type: "update",
-      payload: { id: cardId, color: targetDiv.dataset.color },
-    });
+    colorHandler(targetDiv.dataset.color as string);
+
+    // notesDispatch({
+    //   type: "update",
+    //   payload: { id: cardId, color: targetDiv.dataset.color },
+    // });
   };
 
   return (

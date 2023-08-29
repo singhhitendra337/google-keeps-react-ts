@@ -10,12 +10,16 @@ import {
 import "./styles/Notes.css";
 import DataContext from "../store/data-context";
 import { DataContextInterface } from "../interfaces/interfaces";
+import ColorPalette from "./ColorPalette";
+import NoteImage from "./NoteImage";
 
 const NoteInput = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
-  const [imageData, setImageData] = useState<FileList | null>(null);
+  const [image, setImage] = useState("");
   const [showDetails, setShowDetails] = useState(false);
+  const [selectedColor, setSelectedColor] = useState("white");
+  const [isPinned, setIsPinned] = useState(false);
 
   const { notesDispatch } = useContext(DataContext) as DataContextInterface;
 
@@ -24,10 +28,36 @@ const NoteInput = () => {
     []
   );
 
+  const colorChangeHandler = useCallback((color: string) => {
+    setSelectedColor(color);
+  }, []);
+
+  const imageParser = useCallback((imageContent: FileList | null) => {
+    if (!imageContent) return;
+    const file = imageContent[0];
+    const fileReader = new FileReader();
+
+    // Read the file as a data URL (base64-encoded string)
+    fileReader.readAsDataURL(file);
+
+    // Event listener for when the file is loaded
+    fileReader.onload = function (event) {
+      if (!event.target) return;
+      const imageUrl = event.target.result as string;
+
+      setImage(imageUrl);
+    };
+  }, []);
+
   useEffect(() => {
     const handleOutsideClick = (event: MouseEvent) => {
       console.log("triggerd window");
+      setTitle("");
       setShowDetails(false);
+      setSelectedColor("white");
+      setImage("");
+      setDescription("");
+      setIsPinned(false);
     };
     window.addEventListener("click", handleOutsideClick);
 
@@ -37,54 +67,40 @@ const NoteInput = () => {
     };
   }, []);
 
-  const submitHandler = (event: FormEvent) => {
-    event.preventDefault();
-    event.stopPropagation();
+  const submitHandler = useCallback(
+    (event: FormEvent) => {
+      event.preventDefault();
+      event.stopPropagation();
 
-    if (title.trim().length === 0) {
-      return;
-    }
+      if (title.trim().length === 0) {
+        return;
+      }
 
-    console.log(title);
-    console.log(description);
-    const id = Math.floor(Math.random() * 1000 + 5).toString();
+      console.log(title);
+      console.log(description);
+      const id = Math.floor(Math.random() * 1000 + 5).toString();
 
-    if (!imageData) {
       notesDispatch({
         type: "add",
-        payload: { title, description, id, color: "white", image: "" },
+        payload: {
+          title,
+          description,
+          id,
+          color: selectedColor,
+          image,
+          isPinned,
+        },
       });
 
       setShowDetails(false);
 
       setTitle("");
       setDescription("");
-      setImageData(null);
-    } else {
-      const file = imageData[0];
-      const fileReader = new FileReader();
-
-      // Read the file as a data URL (base64-encoded string)
-      fileReader.readAsDataURL(file);
-
-      // Event listener for when the file is loaded
-      fileReader.onload = function (event) {
-        if (!event.target) return;
-        const imageUrl = event.target.result as string;
-
-        notesDispatch({
-          type: "add",
-          payload: { title, description, id, color: "white", image: imageUrl },
-        });
-
-        setShowDetails(false);
-
-        setTitle("");
-        setDescription("");
-        setImageData(null);
-      };
-    }
-  };
+      setImage("");
+      setSelectedColor("white");
+    },
+    [title, description, image, selectedColor, isPinned, notesDispatch]
+  );
 
   return (
     <div className="top-container">
@@ -94,30 +110,45 @@ const NoteInput = () => {
           onClick={(event) => {
             event.stopPropagation();
           }}
+          style={{ backgroundColor: selectedColor }}
         >
-          {showDetails ? (
+          <span
+            className={`material-icons pin-icon ${
+              showDetails ? "pin-icon-active" : ""
+            }`}
+            onClick={() => setIsPinned((prevPinned) => !prevPinned)}
+          >
+            turned_in{!isPinned ? "_not" : ""}
+          </span>
+
+          {/* <span className="material-icons">turned_in</span> */}
+
+          <div className="note-content">
+            {image.length ? <NoteImage image={image} /> : null}
+            {showDetails ? (
+              <input
+                type="text"
+                id="titlenew"
+                className="input1"
+                placeholder="Title"
+                onChange={titleChangeHandler}
+                value={title}
+              />
+            ) : null}
+
             <input
               type="text"
-              id="titlenew"
-              className="input1"
-              placeholder="Title"
-              onChange={titleChangeHandler}
-              value={title}
+              id="description"
+              className="input2"
+              placeholder="Take a Note..."
+              onChange={(event) => setDescription(event.target.value)}
+              onClick={(event) => {
+                event.stopPropagation();
+                setShowDetails(true);
+              }}
+              value={description}
             />
-          ) : null}
-
-          <input
-            type="text"
-            id="description"
-            className="input2"
-            placeholder="Take a Note..."
-            onChange={(event) => setDescription(event.target.value)}
-            onClick={(event) => {
-              event.stopPropagation();
-              setShowDetails(true);
-            }}
-            value={description}
-          />
+          </div>
           {showDetails ? (
             <div className="input-img-container">
               <label htmlFor="input-img" className="file-label">
@@ -134,19 +165,13 @@ const NoteInput = () => {
                 accept="image/*"
                 style={{ display: "none" }}
                 onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                  setImageData(event.target.files)
+                  //setImageData(event.target.files)
+                  imageParser(event.target.files)
                 }
               />
-              {/* <span
-                 className="material-symbols-outlined"
-                 onClick={() => setPinned((prevPinned) => !prevPinned)}
-               >
-                 bookmark
-               </span> */}
 
-              <button type="submit" className="b1">
-                Save
-              </button>
+              <ColorPalette colorHandler={colorChangeHandler} />
+              <button className="b1">Save</button>
             </div>
           ) : null}
         </div>

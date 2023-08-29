@@ -16,12 +16,29 @@ const Cards = () => {
     );
   });
 
+  const pinnedNotes = filteredNotesData.filter(
+    (filteredNotesData) => filteredNotesData.isPinned
+  );
+  const otherNotes = filteredNotesData.filter(
+    (filteredNotesData) => filteredNotesData.isPinned === false
+  );
+
   return (
-    <div className="cards">
-      {filteredNotesData.map((card) => (
-        <Card key={card.id} card={card} />
-      ))}
-    </div>
+    <>
+      {pinnedNotes.length ? <div className="cards-heading">Pinned</div> : null}
+      <div className="cards">
+        {pinnedNotes.map((card) => (
+          <Card key={card.id} card={card} />
+        ))}
+      </div>
+
+      {otherNotes.length ? <div className="cards-heading">Others</div> : null}
+      <div className="cards">
+        {otherNotes.map((card) => (
+          <Card key={card.id} card={card} />
+        ))}
+      </div>
+    </>
   );
 };
 

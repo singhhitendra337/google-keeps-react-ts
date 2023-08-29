@@ -6,7 +6,7 @@ interface wrapperprops {
 
 const Wrapper = (props: wrapperprops) => {
   return (
-    <div className="wrapper" style={{ display: "flex", marginTop: 10 }}>
+    <div className="wrapper" style={{ display: "flex", marginTop: 80 }}>
       {props.children}
     </div>
   );

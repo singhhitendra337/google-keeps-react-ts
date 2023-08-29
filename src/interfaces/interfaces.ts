@@ -4,6 +4,7 @@ export interface StateInterface {
   image: string;
   id: string;
   color: string;
+  isPinned: boolean;
 }
 
 export interface PayloadInterface {
@@ -12,6 +13,7 @@ export interface PayloadInterface {
   image?: string;
   id: string;
   color?: string;
+  isPinned?: boolean;
 }
 
 export interface ActionInterface {

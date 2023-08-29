@@ -19,6 +19,21 @@ const NoteOptions = ({ card }: { card: StateInterface }) => {
     notesDispatch({ type: "add", payload: { ...card, id: newId } });
   };
 
+  const colorHandler = (color: string) => {
+    notesDispatch({
+      type: "update",
+      payload: { id: card.id, color: color },
+    });
+  };
+
+  const pinHandler = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.stopPropagation();
+    notesDispatch({
+      type: "update",
+      payload: { id: card.id, isPinned: !card.isPinned },
+    });
+  };
+
   return (
     <div className="note-option-container">
       <div
@@ -28,7 +43,7 @@ const NoteOptions = ({ card }: { card: StateInterface }) => {
         delete
       </div>
 
-      <ColorPalette cardId={card.id} />
+      <ColorPalette colorHandler={colorHandler} />
 
       <div
         className="material-symbols-outlined note-icon "
@@ -85,6 +100,10 @@ const NoteOptions = ({ card }: { card: StateInterface }) => {
             };
           }}
         />
+      </div>
+
+      <div className="material-icons note-icon" onClick={pinHandler}>
+        turned_in{!card.isPinned ? "_not" : ""}
       </div>
     </div>
   );

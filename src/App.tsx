@@ -55,8 +55,9 @@ function App() {
           <Wrapper>
             <Navbar hide={hide} />
             <Routes>
+              <Route path="/" element={<Notes hide={hide} />} />
               <Route path="/reminder" element={<Reminder />} />
-              <Route path="/" element={<Notes />} />
+
               {/* <Route path="/signin" element={<Inspiration />} /> */}
 
               {/* <Route path="/addcourse" element={<Personal/>} />
