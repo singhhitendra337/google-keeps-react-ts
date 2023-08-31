@@ -20,6 +20,7 @@ const useData = (
       case "update": {
         console.log("update", action);
         const newNotes = updateNote(state, action.payload.id, action.payload);
+        // console.log(newNotes);
         return newNotes;
       }
       default:

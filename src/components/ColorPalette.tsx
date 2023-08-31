@@ -1,7 +1,5 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import "./styles/ColorPalette.css";
-import DataContext from "../store/data-context";
-import { DataContextInterface } from "../interfaces/interfaces";
 
 const ColorPalette = ({
   colorHandler,
@@ -21,8 +19,6 @@ const ColorPalette = ({
     "#f6e2dd",
     "#e9e3d4",
   ];
-
-  const { notesDispatch } = useContext(DataContext) as DataContextInterface;
 
   useEffect(() => {
     const handleOutsideClick = () => {

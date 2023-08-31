@@ -5,47 +5,58 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Reminder from "./components/Reminder";
 import Notes from "./components/Notes";
 import Wrapper from "./components/Wrapper";
-import { useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import Modal from "./components/Modal";
 import DataContext from "./store/data-context";
 import { ModalInterface } from "./interfaces/interfaces";
+import useHeader from "./hooks/useHeader";
+import useModal from "./hooks/useModal";
 
 function App() {
   const [hide, setHide] = useState(false);
+  const [searchString, setSearchString] = useState("");
+
+  const searchStringChangeHandler = useCallback((pattern: string) => {
+    setSearchString(pattern);
+  }, []);
+
+  const toggleHide = useCallback(() => {
+    setHide((prevHide) => !prevHide);
+  }, []);
+
+  // const { hide, searchString, toggleHide, searchStringChangeHandler } =
+  //   useHeader();
 
   const [notesData, notesDispatch] = useLocalStorage([]);
 
-  const [searchString, setSearchString] = useState("");
+  // const { modal, modalChangeHanlder } = useModal();
 
   const [modal, setModal] = useState<ModalInterface>({
     isOpen: false,
     modalData: null,
   });
 
-  const modalChangeHanlder = (payload: ModalInterface) => {
+  const modalChangeHanlder = useCallback((payload: ModalInterface) => {
     setModal(payload);
-  };
+  }, []);
 
-  const searchStringChangeHandler = (pattern: string) => {
-    setSearchString(pattern);
-  };
+  // use in separat file if not required
 
-  const toggleHide = () => {
-    setHide((prevHide) => !prevHide);
-  };
+  const contextData = useMemo(
+    () => ({
+      modal,
+      modalChangeHanlder,
+      notesData,
+      notesDispatch,
+      searchString,
+    }),
+    [modal, modalChangeHanlder, notesData, notesDispatch, searchString]
+  );
 
   return (
     <div className="App">
-      <DataContext.Provider
-        value={{
-          modal,
-          modalChangeHanlder,
-          notesData,
-          notesDispatch,
-          searchString,
-        }}
-      >
+      <DataContext.Provider value={contextData}>
         <Header
           toggleHide={toggleHide}
           searchStringChangeHandler={searchStringChangeHandler}
@@ -55,8 +66,8 @@ function App() {
           <Wrapper>
             <Navbar hide={hide} />
             <Routes>
-              <Route path="/" element={<Notes hide={hide} />} />
               <Route path="/reminder" element={<Reminder />} />
+              <Route path="/" element={<Notes hide={hide} />} />
 
               {/* <Route path="/signin" element={<Inspiration />} /> */}
 

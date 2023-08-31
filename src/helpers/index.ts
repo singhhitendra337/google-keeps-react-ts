@@ -22,8 +22,20 @@ export const updateNote = (
   id: string,
   newState: PayloadInterface
 ) => {
+  // let newData = JSON.parse(JSON.stringify(state));
+  let index = 0;
+  state.forEach((item, ind) => {
+    if (item.id === id) {
+      index = ind;
+    }
+  });
+
   let newData = [...state];
-  const foundCard = findNote(newData, id) as StateInterface;
-  Object.assign(foundCard, { ...newState });
+  newData.splice(index, 1, { ...state[index], ...newState });
   return newData;
+
+  // let newData = [...state];
+  // const foundCard = findNote(newData, id) as StateInterface;
+  // Object.assign(foundCard, { ...newState });
+  // return newData;
 };

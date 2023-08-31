@@ -1,5 +1,6 @@
+import React from "react";
 import "./styles/Card.css";
-function NoteImage({ image }: { image: string }) {
+const NoteImage = ({ image }: { image: string }) => {
   if (!image) {
     return <div></div>;
   }
@@ -8,6 +9,6 @@ function NoteImage({ image }: { image: string }) {
       <img src={image} alt="" />
     </div>
   );
-}
+};
 
-export default NoteImage;
+export default React.memo(NoteImage);

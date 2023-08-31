@@ -1,13 +1,15 @@
 import "./styles/Cards.css";
 import Card from "./Card";
 import DataContext from "../store/data-context";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { DataContextInterface } from "../interfaces/interfaces";
 
 const Cards = () => {
-  const { notesData, searchString } = useContext(
+  const { notesData, searchString, modalChangeHanlder } = useContext(
     DataContext
   ) as DataContextInterface;
+
+  // usememo with custom hook
 
   const filteredNotesData = notesData.filter((notes) => {
     return (
@@ -23,23 +25,33 @@ const Cards = () => {
     (filteredNotesData) => filteredNotesData.isPinned === false
   );
 
+  console.log("cards rerendered", pinnedNotes);
+
   return (
     <>
       {pinnedNotes.length ? <div className="cards-heading">Pinned</div> : null}
       <div className="cards">
         {pinnedNotes.map((card) => (
-          <Card key={card.id} card={card} />
+          <Card
+            key={card.id}
+            card={card}
+            modalChangeHanlder={modalChangeHanlder}
+          />
         ))}
       </div>
 
       {otherNotes.length ? <div className="cards-heading">Others</div> : null}
       <div className="cards">
         {otherNotes.map((card) => (
-          <Card key={card.id} card={card} />
+          <Card
+            key={card.id}
+            card={card}
+            modalChangeHanlder={modalChangeHanlder}
+          />
         ))}
       </div>
     </>
   );
 };
 
-export default Cards;
+export default React.memo(Cards);

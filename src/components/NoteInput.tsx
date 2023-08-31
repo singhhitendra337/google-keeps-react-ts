@@ -1,4 +1,4 @@
-import {
+import React, {
   ChangeEvent,
   FormEvent,
   useCallback,
@@ -12,6 +12,7 @@ import DataContext from "../store/data-context";
 import { DataContextInterface } from "../interfaces/interfaces";
 import ColorPalette from "./ColorPalette";
 import NoteImage from "./NoteImage";
+import useInput from "../hooks/useInput";
 
 const NoteInput = () => {
   const [title, setTitle] = useState("");
@@ -25,6 +26,12 @@ const NoteInput = () => {
 
   const titleChangeHandler = useCallback(
     (event: ChangeEvent<HTMLInputElement>) => setTitle(event.target.value),
+    []
+  );
+
+  const descriptionChangeHandler = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) =>
+      setDescription(event.target.value),
     []
   );
 
@@ -78,7 +85,7 @@ const NoteInput = () => {
 
       console.log(title);
       console.log(description);
-      const id = Math.floor(Math.random() * 1000 + 5).toString();
+      const id = Date.now().toString();
 
       notesDispatch({
         type: "add",
@@ -102,15 +109,38 @@ const NoteInput = () => {
     [title, description, image, selectedColor, isPinned, notesDispatch]
   );
 
+  // const {
+  //   title,
+  //   description,
+  //   image,
+  //   showDetails,
+  //   selectedColor,
+  //   isPinned,
+  //   titleChangeHandler,
+  //   descriptionChangeHandler,
+  //   colorChangeHandler,
+  //   imageParser,
+  //   submitHandler,
+  //   togglePin,
+  //   inputClickHandler,
+  //   divClickHandler,
+  //   inputAreaRef,
+  // } = useInput();
+
+  console.log("noteinput rerendere");
+
+  //move files and functions outside
+
   return (
     <div className="top-container">
       <form className="form" onSubmit={submitHandler}>
         <div
-          className="newDiv"
+          className={`newDiv ${showDetails ? "newDiv-active" : ""}`}
           onClick={(event) => {
             event.stopPropagation();
           }}
           style={{ backgroundColor: selectedColor }}
+          // ref={inputAreaRef}
         >
           <span
             className={`material-icons pin-icon ${
@@ -120,8 +150,6 @@ const NoteInput = () => {
           >
             turned_in{!isPinned ? "_not" : ""}
           </span>
-
-          {/* <span className="material-icons">turned_in</span> */}
 
           <div className="note-content">
             {image.length ? <NoteImage image={image} /> : null}
@@ -139,9 +167,11 @@ const NoteInput = () => {
             <input
               type="text"
               id="description"
-              className="input2"
+              className={`input2 hidden-input ${
+                showDetails ? "input2-active" : ""
+              }`}
               placeholder="Take a Note..."
-              onChange={(event) => setDescription(event.target.value)}
+              onChange={descriptionChangeHandler}
               onClick={(event) => {
                 event.stopPropagation();
                 setShowDetails(true);
@@ -150,27 +180,32 @@ const NoteInput = () => {
             />
           </div>
           {showDetails ? (
-            <div className="input-img-container">
-              <label htmlFor="input-img" className="file-label">
-                <span
-                  id="span-icon"
-                  className="material-symbols-outlined gray-color"
-                >
-                  image
-                </span>
-              </label>
-              <input
-                type="file"
-                id="input-img"
-                accept="image/*"
-                style={{ display: "none" }}
-                onChange={(event: ChangeEvent<HTMLInputElement>) =>
-                  //setImageData(event.target.files)
-                  imageParser(event.target.files)
-                }
-              />
+            <div className="options-container">
+              <div className="left-options">
+                <div className="image-button">
+                  <label htmlFor="input-img" className="file-label">
+                    <span
+                      id="span-icon"
+                      className="material-symbols-outlined gray-color"
+                    >
+                      image
+                    </span>
+                  </label>
 
-              <ColorPalette colorHandler={colorChangeHandler} />
+                  <input
+                    type="file"
+                    id="input-img"
+                    accept="image/*"
+                    style={{ display: "none" }}
+                    onChange={(event: ChangeEvent<HTMLInputElement>) =>
+                      //setImageData(event.target.files)
+                      imageParser(event.target.files)
+                    }
+                  />
+                </div>
+
+                <ColorPalette colorHandler={colorChangeHandler} />
+              </div>
               <button className="b1">Save</button>
             </div>
           ) : null}
@@ -180,4 +215,4 @@ const NoteInput = () => {
   );
 };
 
-export default NoteInput;
+export default React.memo(NoteInput);

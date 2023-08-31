@@ -1,4 +1,5 @@
 import "./styles/Header.css";
+import React, { useState } from "react";
 
 const Header = ({
   toggleHide,
@@ -7,14 +8,14 @@ const Header = ({
   toggleHide: () => void;
   searchStringChangeHandler: (pattern: string) => void;
 }) => {
+  console.log("header rerendered");
   return (
     <header>
       <div className="header-container">
         <div className="left-header">
           <div
-            className="material-symbols-outlined"
-            onClick={() => toggleHide()}
-            style={{ cursor: "pointer", color: "#7d7d7d " }}
+            className="material-symbols-outlined hamburger"
+            onClick={toggleHide}
           >
             {" "}
             menu{" "}
@@ -31,12 +32,12 @@ const Header = ({
         </div>
         <div className="mid-header">
           <div className="search-div">
-            <div
-              className="material-symbols-outlined"
-              style={{ marginLeft: 15, color: "#7d7d7d " }}
+            <button
+              className="material-symbols-outlined search-icon"
+              style={{ marginLeft: 15 }}
             >
               search
-            </div>
+            </button>
             <input
               type="text"
               className="search"
@@ -47,26 +48,17 @@ const Header = ({
             />
           </div>
           <div className="mid-header-icons">
-            <div
-              className="material-symbols-outlined"
-              style={{ marginLeft: 5, color: "#7d7d7d " }}
-            >
+            <button className="material-symbols-outlined mid-icons">
               refresh
-            </div>
+            </button>
 
-            <div
-              className="material-symbols-outlined"
-              style={{ marginLeft: 5, color: "#7d7d7d " }}
-            >
+            <button className="material-symbols-outlined mid-icons">
               view_list
-            </div>
+            </button>
 
-            <div
-              className="material-symbols-outlined"
-              style={{ marginLeft: 5, color: "#7d7d7d " }}
-            >
+            <button className="material-symbols-outlined mid-icons">
               settings
-            </div>
+            </button>
           </div>
         </div>
         <div className="right-header">
@@ -88,4 +80,4 @@ const Header = ({
   );
 };
 
-export default Header;
+export default React.memo(Header);

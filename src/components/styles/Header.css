@@ -1,5 +1,6 @@
 header {
-  padding: 5px 15px 0px 15px;
+  padding: 8px;
+  height: 64px;
   border-bottom: 1px solid #dfdfdf;
   position: fixed;
   top: 0;
@@ -9,13 +10,36 @@ header {
 }
 .header-container {
   display: flex;
-  height: 69px;
+  /* height: 69px; */
+}
+
+.hamburger {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: "pointer";
+  color: "#7d7d7d ";
+  width: 48px;
+  height: 48px;
+  color: #5f6368;
+  padding: 12px;
+
+  margin: 0 4px;
+  cursor: pointer;
+}
+
+.hamburger:hover {
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.1);
+  color: black;
 }
 
 .left-header {
   display: flex;
   align-items: center;
-  margin-left: 10px;
+  /* margin-left: 10px; */
+  min-width: 232px;
+  padding-right: 30px;
 }
 
 .mid-header {
@@ -23,8 +47,16 @@ header {
   /* width: 60%; */
   flex-grow: 1;
   justify-content: space-between;
-  margin-left: 100px;
+  margin-left: 30px;
   align-items: center;
+}
+
+.mid-icons {
+  margin-left: 5px;
+  color: #7d7d7d;
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 .search {
@@ -34,44 +66,54 @@ header {
   display: block;
   outline: none;
   width: 670px;
-  margin-left: 6px;
+  margin-left: 17px;
   background-color: rgb(240 240 240);
   padding: 0;
-
   font: normal 16px Google Sans, Roboto, Helvetica, Arial, sans-serif;
 }
 
 .search-div {
   display: flex;
-  background-color: rgb(240 240 240);
-  border-radius: 10px;
+  background-color: #f1f3f4;
+  border-radius: 8px;
   align-items: center;
   overflow: hidden;
+}
+
+.search-icon {
+  color: #5f6368;
+  opacity: 1;
+  border: none;
 }
 
 .mid-header-icons {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100px;
+  width: 120px;
 }
 
 .keep-div {
-  padding: 13px;
+  /* padding: 13px; */
   font-family: "Open Sans", sans-serif;
   display: flex;
+  width: 97px;
+  height: 44px;
+  align-items: center;
 }
 
 .keeps-img {
-  width: 40px;
+  width: 44px;
   height: 40px;
+  padding-right: 4px;
 }
 
 .keeps-text {
   color: #5f6368;
+  opacity: 1;
   font-size: 22px;
-  margin-top: 5px;
-  margin-left: 5px;
+  padding-left: 4px;
+  line-height: 24px;
 }
 
 .right-header {

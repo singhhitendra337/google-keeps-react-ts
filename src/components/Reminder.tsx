@@ -1,5 +1,5 @@
 const Reminder = () => {
-  return <div>Reminder</div>;
+  return <div style={{ marginLeft: 900 }}>Reminder</div>;
 };
 
 export default Reminder;

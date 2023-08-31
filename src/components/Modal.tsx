@@ -4,9 +4,12 @@ import DataContext from "../store/data-context";
 import NoteImage from "./NoteImage";
 import NoteOptions from "./NoteOptions";
 import { DataContextInterface, StateInterface } from "../interfaces/interfaces";
+import { couldStartTrivia } from "typescript";
 
 const Modal = () => {
-  const { modal, modalChangeHanlder, notesDispatch } = useContext(
+  //const { notesDispatch } = useContext(DataContext) as DataContextInterface;
+
+  const { notesDispatch, modal, modalChangeHanlder } = useContext(
     DataContext
   ) as DataContextInterface;
   useEffect(() => {
@@ -27,6 +30,8 @@ const Modal = () => {
   const [modalDescription, setModalDescription] = useState(
     modal.modalData?.description
   );
+
+  console.log("modal rerendered", modal.modalData);
 
   return (
     <div className="overlay">

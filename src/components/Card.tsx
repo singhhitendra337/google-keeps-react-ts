@@ -1,14 +1,26 @@
 import "./styles/Card.css";
-import { useContext } from "react";
+import React, { useContext } from "react";
 import DataContext from "../store/data-context";
 import NoteImage from "./NoteImage";
 import NoteOptions from "./NoteOptions";
-import { DataContextInterface, StateInterface } from "../interfaces/interfaces";
+import {
+  DataContextInterface,
+  ModalInterface,
+  StateInterface,
+} from "../interfaces/interfaces";
 
-const Card = ({ card }: { card: StateInterface }) => {
-  const { modalChangeHanlder } = useContext(
-    DataContext
-  ) as DataContextInterface;
+const Card = ({
+  card,
+  modalChangeHanlder,
+}: {
+  card: StateInterface;
+  modalChangeHanlder: (payload: ModalInterface) => void;
+}) => {
+  // const { modalChangeHanlder } = useContext(
+  //   DataContext
+  // ) as DataContextInterface;
+
+  console.log("cardddddd", card);
 
   return (
     <div
@@ -35,4 +47,6 @@ const Card = ({ card }: { card: StateInterface }) => {
   );
 };
 
-export default Card;
+export default React.memo(Card);
+
+//export default Card;

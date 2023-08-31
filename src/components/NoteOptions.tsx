@@ -2,10 +2,16 @@ import { ChangeEvent, useContext, useState } from "react";
 import "./styles/NoteOptions.css";
 import DataContext from "../store/data-context";
 import ColorPalette from "./ColorPalette";
-import { DataContextInterface, StateInterface } from "../interfaces/interfaces";
+import {
+  DataContextInterface,
+  ModalInterface,
+  StateInterface,
+} from "../interfaces/interfaces";
 
 const NoteOptions = ({ card }: { card: StateInterface }) => {
-  const { notesDispatch } = useContext(DataContext) as DataContextInterface;
+  const { notesDispatch, modal, modalChangeHanlder } = useContext(
+    DataContext
+  ) as DataContextInterface;
 
   const deleteHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
@@ -24,6 +30,11 @@ const NoteOptions = ({ card }: { card: StateInterface }) => {
       type: "update",
       payload: { id: card.id, color: color },
     });
+
+    if (modal.isOpen) {
+      const prevData = { ...modal.modalData, color } as StateInterface;
+      modalChangeHanlder({ isOpen: true, modalData: prevData });
+    }
   };
 
   const pinHandler = (event: React.MouseEvent<HTMLDivElement>) => {
@@ -33,6 +44,8 @@ const NoteOptions = ({ card }: { card: StateInterface }) => {
       payload: { id: card.id, isPinned: !card.isPinned },
     });
   };
+
+  //console.log("note options rerendered");
 
   return (
     <div className="note-option-container">
@@ -97,6 +110,14 @@ const NoteOptions = ({ card }: { card: StateInterface }) => {
                 type: "update",
                 payload: { id: card.id, image: imageUrl },
               });
+
+              if (modal.isOpen) {
+                const prevData = {
+                  ...modal.modalData,
+                  image: imageUrl,
+                } as StateInterface;
+                modalChangeHanlder({ isOpen: true, modalData: prevData });
+              }
             };
           }}
         />

@@ -1,22 +1,26 @@
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./styles/Navbar.css";
-import { ReactNode } from "react";
+import React, { useState } from "react";
 
 interface navprops {
   hide: boolean;
-  children?: ReactNode;
 }
 
 const Navbar = ({ hide }: navprops): JSX.Element => {
   const navigate = useNavigate();
 
+  const currentRoute = useLocation().pathname;
+
   return (
     <div className="navbar">
       <div
-        className={`nav-item ${hide ? "nav-item-border" : ""}`}
+        className={`nav-item ${hide ? "nav-item-border" : ""} ${
+          currentRoute === "/" ? "active" : ""
+        }`}
         onClick={(event) => {
           navigate("/");
         }}
+        id="1"
       >
         <div className="nav-icon">
           <svg
@@ -31,10 +35,13 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         <div className={`nav-text ${hide ? "hide" : ""}`}>Notes</div>
       </div>
       <div
-        className={`nav-item ${hide ? "nav-item-border" : ""}`}
+        className={`nav-item ${hide ? "nav-item-border" : ""} ${
+          currentRoute === "/reminder" ? "active" : ""
+        }`}
         onClick={(event) => {
           navigate("/reminder");
         }}
+        id="2"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -44,9 +51,9 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         >
           <path d="M18 17v-6c0-3.07-1.63-5.64-4.5-6.32V4c0-.83-.67-1.5-1.5-1.5s-1.5.67-1.5 1.5v.68C7.64 5.36 6 7.92 6 11v6H4v2h16v-2h-2zm-2 0H8v-6c0-2.48 1.51-4.5 4-4.5s4 2.02 4 4.5v6zm-4 5c1.1 0 2-.9 2-2h-4c0 1.1.9 2 2 2z"></path>
         </svg>
-        <div className={`nav-text ${hide ? "hide" : ""}`}>Reminders</div>
+        <div className={`nav-text ${hide ? "hide" : ""} `}>Reminders</div>
       </div>
-      <div className={`nav-item ${hide ? "nav-item-border" : ""}`}>
+      <div className={`nav-item ${hide ? "nav-item-border" : ""}`} id="3">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -57,7 +64,7 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         </svg>
         <div className={`nav-text ${hide ? "hide" : ""}`}>Inspiration</div>
       </div>
-      <div className={`nav-item ${hide ? "nav-item-border" : ""}`}>
+      <div className={`nav-item ${hide ? "nav-item-border" : ""}`} id="4">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -68,7 +75,7 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         </svg>
         <div className={`nav-text ${hide ? "hide" : ""}`}>Personal</div>
       </div>
-      <div className={`nav-item ${hide ? "nav-item-border" : ""}`}>
+      <div className={`nav-item ${hide ? "nav-item-border" : ""}`} id="5">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -79,7 +86,7 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         </svg>
         <div className={`nav-text ${hide ? "hide" : ""}`}>Work</div>
       </div>
-      <div className={`nav-item ${hide ? "nav-item-border" : ""}`}>
+      <div className={`nav-item ${hide ? "nav-item-border" : ""}`} id="6">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -90,7 +97,7 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         </svg>
         <div className={`nav-text ${hide ? "hide" : ""}`}>Edit Labels</div>
       </div>
-      <div className={`nav-item ${hide ? "nav-item-border" : ""}`}>
+      <div className={`nav-item ${hide ? "nav-item-border" : ""}`} id="7">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -101,7 +108,7 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         </svg>
         <div className={`nav-text ${hide ? "hide" : ""}`}>Archive</div>
       </div>
-      <div className={`nav-item ${hide ? "nav-item-border" : ""}`}>
+      <div className={`nav-item ${hide ? "nav-item-border" : ""}`} id="1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -111,10 +118,12 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
           <path d="M15 4V3H9v1H4v2h1v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6h1V4h-5zm2 15H7V6h10v13z"></path>
           <path d="M9 8h2v9H9zm4 0h2v9h-2z"></path>
         </svg>
-        <div className={`nav-text ${hide ? "hide" : ""}`}>Trash</div>
+        <div className={`nav-text ${hide ? "hide" : ""}`} id="1">
+          Trash
+        </div>
       </div>
     </div>
   );
 };
 
-export default Navbar;
+export default React.memo(Navbar);
