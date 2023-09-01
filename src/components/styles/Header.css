@@ -10,7 +10,6 @@ header {
 }
 .header-container {
   display: flex;
-  /* height: 69px; */
 }
 
 .hamburger {
@@ -37,14 +36,12 @@ header {
 .left-header {
   display: flex;
   align-items: center;
-  /* margin-left: 10px; */
   min-width: 232px;
   padding-right: 30px;
 }
 
 .mid-header {
   display: flex;
-  /* width: 60%; */
   flex-grow: 1;
   justify-content: space-between;
   margin-left: 30px;
