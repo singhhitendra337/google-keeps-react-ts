@@ -14,32 +14,32 @@ import useHeader from "./hooks/useHeader";
 import useModal from "./hooks/useModal";
 
 function App() {
-  const [hide, setHide] = useState(false);
-  const [searchString, setSearchString] = useState("");
+  // const [hide, setHide] = useState(false);
+  // const [searchString, setSearchString] = useState("");
 
-  const searchStringChangeHandler = useCallback((pattern: string) => {
-    setSearchString(pattern);
-  }, []);
+  // const searchStringChangeHandler = useCallback((pattern: string) => {
+  //   setSearchString(pattern);
+  // }, []);
 
-  const toggleHide = useCallback(() => {
-    setHide((prevHide) => !prevHide);
-  }, []);
+  // const toggleHide = useCallback(() => {
+  //   setHide((prevHide) => !prevHide);
+  // }, []);
 
-  // const { hide, searchString, toggleHide, searchStringChangeHandler } =
-  //   useHeader();
+  const { hide, searchString, toggleHide, searchStringChangeHandler } =
+    useHeader();
 
   const [notesData, notesDispatch] = useLocalStorage([]);
 
-  // const { modal, modalChangeHanlder } = useModal();
+  const { modal, modalChangeHanlder } = useModal();
 
-  const [modal, setModal] = useState<ModalInterface>({
-    isOpen: false,
-    modalData: null,
-  });
+  // const [modal, setModal] = useState<ModalInterface>({
+  //   isOpen: false,
+  //   modalData: null,
+  // });
 
-  const modalChangeHanlder = useCallback((payload: ModalInterface) => {
-    setModal(payload);
-  }, []);
+  // const modalChangeHanlder = useCallback((payload: ModalInterface) => {
+  //   setModal(payload);
+  // }, []);
 
   // use in separat file if not required
 
@@ -69,11 +69,13 @@ function App() {
               <Route path="/reminder" element={<Reminder />} />
               <Route path="/" element={<Notes hide={hide} />} />
 
-              {/* <Route path="/signin" element={<Inspiration />} /> */}
+              <Route path="/inspiration" element={<Reminder />} />
 
-              {/* <Route path="/addcourse" element={<Personal/>} />
-            <Route path="/courses" element={<Work />} />
-            <Route path="/courses/:courseId" element={<Edit Labels />} /> */}
+              <Route path="/personal" element={<Reminder />} />
+              <Route path="/work" element={<Reminder />} />
+              <Route path="/edit" element={<Reminder />} />
+              <Route path="/archive" element={<Reminder />} />
+              <Route path="/trash" element={<Reminder />} />
             </Routes>
           </Wrapper>
         </Router>

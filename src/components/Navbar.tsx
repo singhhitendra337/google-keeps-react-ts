@@ -14,7 +14,7 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
   return (
     <div className="navbar">
       <div
-        className={`nav-item ${hide ? "nav-item-border" : ""} ${
+        className={`nav-item ${hide ? "nav-item-border nav-item-hidden" : ""} ${
           currentRoute === "/" ? "active" : ""
         }`}
         onClick={(event) => {
@@ -35,7 +35,7 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         <div className={`nav-text ${hide ? "hide" : ""}`}>Notes</div>
       </div>
       <div
-        className={`nav-item ${hide ? "nav-item-border" : ""} ${
+        className={`nav-item ${hide ? "nav-item-border nav-item-hidden" : ""} ${
           currentRoute === "/reminder" ? "active" : ""
         }`}
         onClick={(event) => {
@@ -53,7 +53,15 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         </svg>
         <div className={`nav-text ${hide ? "hide" : ""} `}>Reminders</div>
       </div>
-      <div className={`nav-item ${hide ? "nav-item-border" : ""}`} id="3">
+      <div
+        className={`nav-item ${hide ? "nav-item-border nav-item-hidden" : ""} ${
+          currentRoute === "/inspiration" ? "active" : ""
+        }`}
+        onClick={(event) => {
+          navigate("/inspiration");
+        }}
+        id="3"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -64,7 +72,15 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         </svg>
         <div className={`nav-text ${hide ? "hide" : ""}`}>Inspiration</div>
       </div>
-      <div className={`nav-item ${hide ? "nav-item-border" : ""}`} id="4">
+      <div
+        className={`nav-item ${hide ? "nav-item-border nav-item-hidden" : ""} ${
+          currentRoute === "/personal" ? "active" : ""
+        }`}
+        onClick={(event) => {
+          navigate("/personal");
+        }}
+        id="4"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -75,7 +91,15 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         </svg>
         <div className={`nav-text ${hide ? "hide" : ""}`}>Personal</div>
       </div>
-      <div className={`nav-item ${hide ? "nav-item-border" : ""}`} id="5">
+      <div
+        className={`nav-item ${hide ? "nav-item-border nav-item-hidden" : ""} ${
+          currentRoute === "/work" ? "active" : ""
+        }`}
+        onClick={(event) => {
+          navigate("/work");
+        }}
+        id="5"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -86,7 +110,15 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         </svg>
         <div className={`nav-text ${hide ? "hide" : ""}`}>Work</div>
       </div>
-      <div className={`nav-item ${hide ? "nav-item-border" : ""}`} id="6">
+      <div
+        className={`nav-item ${hide ? "nav-item-border nav-item-hidden" : ""} ${
+          currentRoute === "/edit" ? "active" : ""
+        }`}
+        onClick={(event) => {
+          navigate("/edit");
+        }}
+        id="6"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -97,7 +129,15 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         </svg>
         <div className={`nav-text ${hide ? "hide" : ""}`}>Edit Labels</div>
       </div>
-      <div className={`nav-item ${hide ? "nav-item-border" : ""}`} id="7">
+      <div
+        className={`nav-item ${hide ? "nav-item-border nav-item-hidden" : ""} ${
+          currentRoute === "/archive" ? "active" : ""
+        }`}
+        onClick={(event) => {
+          navigate("/archive");
+        }}
+        id="7"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -108,7 +148,15 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
         </svg>
         <div className={`nav-text ${hide ? "hide" : ""}`}>Archive</div>
       </div>
-      <div className={`nav-item ${hide ? "nav-item-border" : ""}`} id="1">
+      <div
+        className={`nav-item ${hide ? "nav-item-border nav-item-hidden" : ""} ${
+          currentRoute === "/trash" ? "active" : ""
+        }`}
+        onClick={(event) => {
+          navigate("/trash");
+        }}
+        id="8"
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -118,7 +166,7 @@ const Navbar = ({ hide }: navprops): JSX.Element => {
           <path d="M15 4V3H9v1H4v2h1v13c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V6h1V4h-5zm2 15H7V6h10v13z"></path>
           <path d="M9 8h2v9H9zm4 0h2v9h-2z"></path>
         </svg>
-        <div className={`nav-text ${hide ? "hide" : ""}`} id="1">
+        <div className={`nav-text ${hide ? "hide" : ""}`} id="8">
           Trash
         </div>
       </div>

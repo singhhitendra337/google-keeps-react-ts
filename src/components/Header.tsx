@@ -48,7 +48,7 @@ const Header = ({
             />
           </div>
           <div className="mid-header-icons">
-            <button className="material-symbols-outlined mid-icons">
+            {/* <button className="material-symbols-outlined mid-icons">
               refresh
             </button>
 
@@ -58,7 +58,11 @@ const Header = ({
 
             <button className="material-symbols-outlined mid-icons">
               settings
-            </button>
+            </button> */}
+
+            <button className="refresh"></button>
+            <button className="grid"></button>
+            <button className="settings"></button>
           </div>
         </div>
         <div className="right-header">

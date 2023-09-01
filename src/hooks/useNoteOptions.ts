@@ -7,15 +7,15 @@ const useNoteOptions = ({ card }: { card: StateInterface }) => {
     DataContext
   ) as DataContextInterface;
 
-  const { id: cardID, isPinned: pinValue } = card;
+  //const {id : cardID,isPinned : pinValue}=card;
 
   const deleteHandler = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
       event.stopPropagation();
 
-      notesDispatch({ type: "delete", payload: { id: cardID } });
+      notesDispatch({ type: "delete", payload: { id: card.id } });
     },
-    [cardID, notesDispatch]
+    [card, notesDispatch]
   );
 
   const copyHandler = useCallback(
@@ -31,7 +31,7 @@ const useNoteOptions = ({ card }: { card: StateInterface }) => {
     (color: string) => {
       notesDispatch({
         type: "update",
-        payload: { id: cardID, color: color },
+        payload: { id: card.id, color: color },
       });
 
       if (modal.isOpen) {
@@ -39,7 +39,7 @@ const useNoteOptions = ({ card }: { card: StateInterface }) => {
         modalChangeHanlder({ isOpen: true, modalData: prevData });
       }
     },
-    [cardID, modal, modalChangeHanlder, notesDispatch]
+    [card, modal, modalChangeHanlder, notesDispatch]
   );
 
   const pinHandler = useCallback(
@@ -47,10 +47,10 @@ const useNoteOptions = ({ card }: { card: StateInterface }) => {
       event.stopPropagation();
       notesDispatch({
         type: "update",
-        payload: { id: cardID, isPinned: !pinValue },
+        payload: { id: card.id, isPinned: !card.isPinned },
       });
     },
-    [cardID, pinValue, notesDispatch]
+    [card, notesDispatch]
   );
 
   const labelClick = useCallback(
@@ -67,38 +67,41 @@ const useNoteOptions = ({ card }: { card: StateInterface }) => {
     []
   );
 
-  const imageHandler = (event: ChangeEvent<HTMLInputElement>) => {
-    // setImageData(event.target.files)
-    event.stopPropagation();
-    console.log(event.target, "image change triggered");
+  const imageHandler = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      // setImageData(event.target.files)
+      event.stopPropagation();
+      console.log(event.target, "image change triggered");
 
-    if (!event.target.files || event.target.files.length === 0) return;
+      if (!event.target.files || event.target.files.length === 0) return;
 
-    const file = event.target.files[0];
-    const fileReader = new FileReader();
+      const file = event.target.files[0];
+      const fileReader = new FileReader();
 
-    // Read the file as a data URL (base64-encoded string)
-    fileReader.readAsDataURL(file);
+      // Read the file as a data URL (base64-encoded string)
+      fileReader.readAsDataURL(file);
 
-    // Event listener for when the file is loaded
-    fileReader.onload = function (event) {
-      if (!event.target) return;
-      const imageUrl = event.target.result as string;
+      // Event listener for when the file is loaded
+      fileReader.onload = function (event) {
+        if (!event.target) return;
+        const imageUrl = event.target.result as string;
 
-      notesDispatch({
-        type: "update",
-        payload: { id: card.id, image: imageUrl },
-      });
+        notesDispatch({
+          type: "update",
+          payload: { id: card.id, image: imageUrl },
+        });
 
-      if (modal.isOpen) {
-        const prevData = {
-          ...modal.modalData,
-          image: imageUrl,
-        } as StateInterface;
-        modalChangeHanlder({ isOpen: true, modalData: prevData });
-      }
-    };
-  };
+        if (modal.isOpen) {
+          const prevData = {
+            ...modal.modalData,
+            image: imageUrl,
+          } as StateInterface;
+          modalChangeHanlder({ isOpen: true, modalData: prevData });
+        }
+      };
+    },
+    [card, modal, modalChangeHanlder, notesDispatch]
+  );
 
   const inputData = useMemo(
     () => ({
@@ -120,6 +123,8 @@ const useNoteOptions = ({ card }: { card: StateInterface }) => {
       imageHandler,
     ]
   );
+
+  return inputData;
 };
 
 export default useNoteOptions;
