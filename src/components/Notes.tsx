@@ -10,7 +10,7 @@ const Notes = ({ hide }: { hide: boolean }) => {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      marginLeft: hide ? 0 : 200,
+      marginLeft: hide ? 96 : 281,
     }),
     [hide]
   );

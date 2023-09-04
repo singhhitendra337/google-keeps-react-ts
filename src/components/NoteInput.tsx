@@ -1,114 +1,11 @@
-import React, {
-  ChangeEvent,
-  FormEvent,
-  useCallback,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import React, { useMemo } from "react";
 
 import "./styles/Notes.css";
-import DataContext from "../store/data-context";
-import { DataContextInterface } from "../interfaces/interfaces";
 import ColorPalette from "./ColorPalette";
 import NoteImage from "./NoteImage";
 import useInput from "../hooks/useInput";
 
 const NoteInput = () => {
-  // const [title, setTitle] = useState("");
-  // const [description, setDescription] = useState("");
-  // const [image, setImage] = useState("");
-  // const [showDetails, setShowDetails] = useState(false);
-  // const [selectedColor, setSelectedColor] = useState("white");
-  // const [isPinned, setIsPinned] = useState(false);
-
-  // const { notesDispatch } = useContext(DataContext) as DataContextInterface;
-
-  // const titleChangeHandler = useCallback(
-  //   (event: ChangeEvent<HTMLInputElement>) => setTitle(event.target.value),
-  //   []
-  // );
-
-  // const descriptionChangeHandler = useCallback(
-  //   (event: ChangeEvent<HTMLInputElement>) =>
-  //     setDescription(event.target.value),
-  //   []
-  // );
-
-  // const colorChangeHandler = useCallback((color: string) => {
-  //   setSelectedColor(color);
-  // }, []);
-
-  // const imageParser = useCallback((imageContent: FileList | null) => {
-  //   if (!imageContent) return;
-  //   const file = imageContent[0];
-  //   const fileReader = new FileReader();
-
-  //   // Read the file as a data URL (base64-encoded string)
-  //   fileReader.readAsDataURL(file);
-
-  //   // Event listener for when the file is loaded
-  //   fileReader.onload = function (event) {
-  //     if (!event.target) return;
-  //     const imageUrl = event.target.result as string;
-
-  //     setImage(imageUrl);
-  //   };
-  // }, []);
-
-  // useEffect(() => {
-  //   const handleOutsideClick = (event: MouseEvent) => {
-  //     console.log("triggerd window");
-  //     setTitle("");
-  //     setShowDetails(false);
-  //     setSelectedColor("white");
-  //     setImage("");
-  //     setDescription("");
-  //     setIsPinned(false);
-  //   };
-  //   window.addEventListener("click", handleOutsideClick);
-
-  //   return () => {
-  //     console.log("unmounted");
-  //     window.removeEventListener("click", handleOutsideClick);
-  //   };
-  // }, []);
-
-  // const submitHandler = useCallback(
-  //   (event: FormEvent) => {
-  //     event.preventDefault();
-  //     event.stopPropagation();
-
-  //     if (title.trim().length === 0) {
-  //       return;
-  //     }
-
-  //     console.log(title);
-  //     console.log(description);
-  //     const id = Date.now().toString();
-
-  //     notesDispatch({
-  //       type: "add",
-  //       payload: {
-  //         title,
-  //         description,
-  //         id,
-  //         color: selectedColor,
-  //         image,
-  //         isPinned,
-  //       },
-  //     });
-
-  //     setShowDetails(false);
-
-  //     setTitle("");
-  //     setDescription("");
-  //     setImage("");
-  //     setSelectedColor("white");
-  //   },
-  //   [title, description, image, selectedColor, isPinned, notesDispatch]
-  // );
-
   const {
     title,
     description,
@@ -129,7 +26,9 @@ const NoteInput = () => {
 
   console.log("noteinput rerendere");
 
-  //move files and functions outside
+  const inputStyles = useMemo(() => {
+    return { backgroundColor: selectedColor };
+  }, [selectedColor]);
 
   return (
     <div className="top-container">
@@ -137,13 +36,13 @@ const NoteInput = () => {
         <div
           className={`newDiv ${showDetails ? "newDiv-active" : ""}`}
           onClick={divClickHandler}
-          style={{ backgroundColor: selectedColor }}
+          style={inputStyles}
           ref={inputAreaRef}
         >
           <span
             className={`material-icons pin-icon ${
               showDetails ? "pin-icon-active" : ""
-            }`}
+            } `}
             onClick={togglePin}
           >
             turned_in{!isPinned ? "_not" : ""}
@@ -196,7 +95,18 @@ const NoteInput = () => {
                   />
                 </div>
 
-                <ColorPalette colorHandler={colorChangeHandler} />
+                <ColorPalette
+                  colorHandler={colorChangeHandler}
+                  styles={{
+                    width: 30,
+                    height: 30,
+                    marginTop: 0,
+                    marginBottom: 0,
+                    marginLeft: 2,
+                    marginRight: 5,
+                    color: "#5f6368",
+                  }}
+                />
               </div>
               <button className="b1">Save</button>
             </div>

@@ -104,6 +104,12 @@ const useInput = () => {
         inputAreaRef &&
         !inputAreaRef.current?.contains(event.target as Node)
       ) {
+        const form = document.querySelector(".form") as HTMLFormElement;
+        console.log(title);
+        if (title.length > 0) {
+          console.log("inside fomr");
+          form.submit();
+        }
         console.log("ref triggered");
         setTitle("");
         setShowDetails(false);
@@ -119,13 +125,14 @@ const useInput = () => {
       console.log("unmounted");
       window.removeEventListener("click", handleOutsideClick);
     };
-  }, [inputAreaRef]);
+  }, [inputAreaRef, title]);
 
   const submitHandler = useCallback(
     (event: FormEvent) => {
       event.preventDefault();
       event.stopPropagation();
 
+      console.log("submit triggered");
       if (title.trim().length === 0) {
         return;
       }

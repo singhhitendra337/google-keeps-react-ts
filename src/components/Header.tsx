@@ -66,18 +66,10 @@ const Header = ({
           </div>
         </div>
         <div className="right-header">
-          <div
-            className="material-symbols-outlined"
-            style={{ color: "#7d7d7d " }}
-          >
-            apps
-          </div>
-          <div
-            className="material-symbols-outlined"
-            style={{ marginLeft: 10, color: "#7d7d7d " }}
-          >
+          <button className="material-symbols-outlined apps">apps</button>
+          <button className="material-symbols-outlined account">
             account_circle
-          </div>
+          </button>
         </div>
       </div>
     </header>
