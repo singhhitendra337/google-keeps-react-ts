@@ -1,13 +1,17 @@
-import { ChangeEvent, useCallback, useContext, useMemo } from "react";
+import { ChangeEvent, useCallback, useContext, useMemo, useState } from "react";
 import DataContext from "../store/data-context";
 import { DataContextInterface, StateInterface } from "../interfaces/interfaces";
 
-const useNoteOptions = ({ card }: { card: StateInterface }) => {
+const useNoteOptions = (card: StateInterface) => {
   const { notesDispatch, modal, modalChangeHanlder } = useContext(
     DataContext
   ) as DataContextInterface;
 
-  //const {id : cardID,isPinned : pinValue}=card;
+  const [isClicked, setIsClicked] = useState(false);
+
+  const clickHandler = useCallback((value: boolean) => {
+    setIsClicked(value);
+  }, []);
 
   const deleteHandler = useCallback(
     (event: React.MouseEvent<HTMLDivElement>) => {
@@ -112,6 +116,8 @@ const useNoteOptions = ({ card }: { card: StateInterface }) => {
       labelClick,
       inputClick,
       imageHandler,
+      isClicked,
+      clickHandler,
     }),
     [
       deleteHandler,
@@ -121,6 +127,7 @@ const useNoteOptions = ({ card }: { card: StateInterface }) => {
       labelClick,
       inputClick,
       imageHandler,
+      isClicked,
     ]
   );
 

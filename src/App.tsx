@@ -14,34 +14,12 @@ import useHeader from "./hooks/useHeader";
 import useModal from "./hooks/useModal";
 
 function App() {
-  // const [hide, setHide] = useState(false);
-  // const [searchString, setSearchString] = useState("");
-
-  // const searchStringChangeHandler = useCallback((pattern: string) => {
-  //   setSearchString(pattern);
-  // }, []);
-
-  // const toggleHide = useCallback(() => {
-  //   setHide((prevHide) => !prevHide);
-  // }, []);
-
   const { hide, searchString, toggleHide, searchStringChangeHandler } =
     useHeader();
 
   const [notesData, notesDispatch] = useLocalStorage([]);
 
   const { modal, modalChangeHanlder } = useModal();
-
-  // const [modal, setModal] = useState<ModalInterface>({
-  //   isOpen: false,
-  //   modalData: null,
-  // });
-
-  // const modalChangeHanlder = useCallback((payload: ModalInterface) => {
-  //   setModal(payload);
-  // }, []);
-
-  // use in separat file if not required
 
   const contextData = useMemo(
     () => ({

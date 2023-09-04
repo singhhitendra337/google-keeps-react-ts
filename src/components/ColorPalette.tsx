@@ -3,10 +3,18 @@ import "./styles/ColorPalette.css";
 
 const ColorPalette = ({
   colorHandler,
+  styles,
+  clickHandler,
 }: {
   colorHandler: (color: string) => void;
+  styles?: React.CSSProperties;
+  clickHandler?: (value: boolean) => void;
+  cardId?: string;
+  idd?: string;
+  setIdd?: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   const [tray, setTray] = useState(false);
+
   const colors = [
     "#f39f76",
     "#faafa8",
@@ -24,6 +32,8 @@ const ColorPalette = ({
     const handleOutsideClick = () => {
       console.log("triggerd window palette");
       setTray(false);
+      // setIsClicked?.(false);
+      clickHandler?.(false);
     };
     window.addEventListener("click", handleOutsideClick);
 
@@ -51,10 +61,27 @@ const ColorPalette = ({
       className="color-button"
       onClick={(event) => {
         event.stopPropagation();
+        // const allTrays = document.querySelectorAll(".color-tray");
+
+        // allTrays.forEach((node) => {
+        //   node.remove();
+        // });
+
+        // console.log(allTrays);
+        const clickedId = (event.target as HTMLSpanElement).dataset.id;
+        console.log("target", (event.target as HTMLSpanElement).dataset.id);
+
         setTray((prev) => !prev);
+        // setIsClicked?.(true);
+        clickHandler?.(true);
       }}
     >
-      <span className="material-symbols-outlined note-icon">palette</span>
+      <span
+        className="material-symbols-outlined note-icon"
+        style={{ ...styles }}
+      >
+        palette
+      </span>
       {tray && (
         <div className="color-tray">
           <div
