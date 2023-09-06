@@ -11,15 +11,14 @@ import {
 } from "react";
 import DataContext from "../store/data-context";
 import { DataContextInterface } from "../interfaces/interfaces";
-import { env } from "process";
 
 const useInput = () => {
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [image, setImage] = useState("");
-  const [showDetails, setShowDetails] = useState(false);
-  const [selectedColor, setSelectedColor] = useState("white");
-  const [isPinned, setIsPinned] = useState(false);
+  const [title, setTitle] = useState<string>("");
+  const [description, setDescription] = useState<string>("");
+  const [image, setImage] = useState<string>("");
+  const [showDetails, setShowDetails] = useState<boolean>(false);
+  const [selectedColor, setSelectedColor] = useState<string>("white");
+  const [isPinned, setIsPinned] = useState<boolean>(false);
 
   const inputAreaRef = useRef<HTMLDivElement | null>(null);
 
