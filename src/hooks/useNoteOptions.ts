@@ -128,6 +128,7 @@ const useNoteOptions = (card: StateInterface) => {
       inputClick,
       imageHandler,
       isClicked,
+      clickHandler,
     ]
   );
 
