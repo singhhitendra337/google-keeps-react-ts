@@ -1,6 +1,6 @@
 .top-container {
   margin: 20px;
-  width: 600px;
+  /* width: 600px; */
   /* border : 1px solid black; */
   margin-top: 32px;
 }
@@ -206,4 +206,30 @@ input {
 .note-content {
   max-height: 600px;
   overflow-y: auto;
+}
+
+@media (max-width: 890px) {
+  .newDiv {
+    width: 500px;
+  }
+
+  .cards {
+    justify-content: center;
+  }
+
+  .notes-wrapper {
+    margin-left: 60px !important;
+  }
+}
+
+@media (max-width: 604px) {
+  .newDiv {
+    width: 400px;
+  }
+  .cards {
+    justify-content: center;
+  }
+  .card {
+    flex-grow: 1;
+  }
 }
