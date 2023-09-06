@@ -4,13 +4,12 @@ import NoteImage from "./NoteImage";
 import NoteOptions from "./NoteOptions";
 import { ModalInterface, StateInterface } from "../interfaces/interfaces";
 
-const Card = ({
-  card,
-  modalChangeHanlder,
-}: {
+interface CardProps {
   card: StateInterface;
   modalChangeHanlder: (payload: ModalInterface) => void;
-}) => {
+}
+
+const Card = ({ card, modalChangeHanlder }: CardProps) => {
   console.log("cardddddd", card);
 
   return (
