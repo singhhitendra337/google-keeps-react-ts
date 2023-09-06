@@ -66,3 +66,18 @@
   border-radius: 29px;
   margin-left: 12px;
 }
+
+@media (max-width: 890px) {
+  .nav-item {
+    width: 46px;
+    height: 46px;
+    justify-content: center;
+    padding-left: 0;
+    border-radius: 29px;
+    margin-left: 12px;
+  }
+
+  .nav-text {
+    display: none;
+  }
+}
