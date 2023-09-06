@@ -4,11 +4,8 @@ import DataContext from "../store/data-context";
 import NoteImage from "./NoteImage";
 import NoteOptions from "./NoteOptions";
 import { DataContextInterface, StateInterface } from "../interfaces/interfaces";
-import { couldStartTrivia } from "typescript";
 
 const Modal = () => {
-  //const { notesDispatch } = useContext(DataContext) as DataContextInterface;
-
   const { notesDispatch, modal, modalChangeHanlder } = useContext(
     DataContext
   ) as DataContextInterface;
@@ -24,7 +21,7 @@ const Modal = () => {
       console.log("unmounted");
       window.removeEventListener("click", handleOutsideClick);
     };
-  }, []);
+  }, [modalChangeHanlder]);
 
   const [modalTitle, setModalTitle] = useState(modal.modalData?.title);
   const [modalDescription, setModalDescription] = useState(

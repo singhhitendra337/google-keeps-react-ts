@@ -1,5 +1,5 @@
 import "./styles/Header.css";
-import React, { useState } from "react";
+import React from "react";
 
 const Header = ({
   toggleHide,

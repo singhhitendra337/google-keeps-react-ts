@@ -1,4 +1,3 @@
-import { ChangeEvent, useContext, useState } from "react";
 import "./styles/NoteOptions.css";
 import ColorPalette from "./ColorPalette";
 import { StateInterface } from "../interfaces/interfaces";
