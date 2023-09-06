@@ -6,7 +6,7 @@
   /* background-color: #202124; */
   background-color: rgba(32, 33, 36, 0.6);
   top: 0;
-  z-index: 10;
+  z-index: 100;
 }
 
 #modal-save {
@@ -53,7 +53,7 @@
 
 .modal {
   position: absolute;
-  top: 14%;
+  top: 9%;
   left: 33%;
 
   width: 600px;
@@ -87,4 +87,5 @@ textarea {
 .modal-content {
   max-height: 80vh;
   overflow-y: auto;
+  border-radius: 8px;
 }

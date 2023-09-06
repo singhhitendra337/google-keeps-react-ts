@@ -5,11 +5,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Reminder from "./components/Reminder";
 import Notes from "./components/Notes";
 import Wrapper from "./components/Wrapper";
-import { useCallback, useMemo, useState } from "react";
+import { useMemo } from "react";
 import useLocalStorage from "./hooks/useLocalStorage";
 import Modal from "./components/Modal";
 import DataContext from "./store/data-context";
-import { ModalInterface } from "./interfaces/interfaces";
 import useHeader from "./hooks/useHeader";
 import useModal from "./hooks/useModal";
 

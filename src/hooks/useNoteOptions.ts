@@ -7,7 +7,7 @@ const useNoteOptions = (card: StateInterface) => {
     DataContext
   ) as DataContextInterface;
 
-  const [isClicked, setIsClicked] = useState(false);
+  const [isClicked, setIsClicked] = useState<boolean>(false);
 
   const clickHandler = useCallback((value: boolean) => {
     setIsClicked(value);
@@ -128,6 +128,7 @@ const useNoteOptions = (card: StateInterface) => {
       inputClick,
       imageHandler,
       isClicked,
+      clickHandler,
     ]
   );
 

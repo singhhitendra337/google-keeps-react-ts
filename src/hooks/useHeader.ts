@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState } from "react";
 
 const useHeader = () => {
-  const [hide, setHide] = useState(false);
-  const [searchString, setSearchString] = useState("");
+  const [hide, setHide] = useState<boolean>(false);
+  const [searchString, setSearchString] = useState<string>("");
 
   const searchStringChangeHandler = useCallback((pattern: string) => {
     setSearchString(pattern);

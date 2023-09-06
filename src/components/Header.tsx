@@ -1,13 +1,12 @@
 import "./styles/Header.css";
-import React, { useState } from "react";
+import React from "react";
 
-const Header = ({
-  toggleHide,
-  searchStringChangeHandler,
-}: {
+interface HeaderProps {
   toggleHide: () => void;
   searchStringChangeHandler: (pattern: string) => void;
-}) => {
+}
+
+const Header = ({ toggleHide, searchStringChangeHandler }: HeaderProps) => {
   console.log("header rerendered");
   return (
     <header>

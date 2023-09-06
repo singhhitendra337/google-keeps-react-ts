@@ -1,10 +1,10 @@
 import { ReactNode } from "react";
 
-interface wrapperprops {
+interface WrapperProps {
   children: ReactNode;
 }
 
-const Wrapper = (props: wrapperprops) => {
+const Wrapper = (props: WrapperProps) => {
   return (
     <div className="wrapper" style={{ display: "flex", marginTop: 63 }}>
       {props.children}

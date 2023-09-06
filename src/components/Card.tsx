@@ -1,25 +1,15 @@
 import "./styles/Card.css";
-import React, { useContext } from "react";
-import DataContext from "../store/data-context";
+import React from "react";
 import NoteImage from "./NoteImage";
 import NoteOptions from "./NoteOptions";
-import {
-  DataContextInterface,
-  ModalInterface,
-  StateInterface,
-} from "../interfaces/interfaces";
+import { ModalInterface, StateInterface } from "../interfaces/interfaces";
 
-const Card = ({
-  card,
-  modalChangeHanlder,
-}: {
+interface CardProps {
   card: StateInterface;
   modalChangeHanlder: (payload: ModalInterface) => void;
-}) => {
-  // const { modalChangeHanlder } = useContext(
-  //   DataContext
-  // ) as DataContextInterface;
+}
 
+const Card = ({ card, modalChangeHanlder }: CardProps) => {
   console.log("cardddddd", card);
 
   return (

@@ -1,18 +1,17 @@
 import { useEffect, useState } from "react";
 import "./styles/ColorPalette.css";
 
+interface ColorPaletteProps {
+  colorHandler: (color: string) => void;
+  styles?: React.CSSProperties;
+  clickHandler?: (value: boolean) => void;
+}
+
 const ColorPalette = ({
   colorHandler,
   styles,
   clickHandler,
-}: {
-  colorHandler: (color: string) => void;
-  styles?: React.CSSProperties;
-  clickHandler?: (value: boolean) => void;
-  cardId?: string;
-  idd?: string;
-  setIdd?: React.Dispatch<React.SetStateAction<string>>;
-}) => {
+}: ColorPaletteProps) => {
   const [tray, setTray] = useState(false);
 
   const colors = [
@@ -41,7 +40,7 @@ const ColorPalette = ({
       console.log("unmounted");
       window.removeEventListener("click", handleOutsideClick);
     };
-  }, []);
+  }, [clickHandler]);
 
   const colorClickHandler = (event: React.MouseEvent<HTMLDivElement>) => {
     event.stopPropagation();
@@ -68,7 +67,6 @@ const ColorPalette = ({
         // });
 
         // console.log(allTrays);
-        const clickedId = (event.target as HTMLSpanElement).dataset.id;
         console.log("target", (event.target as HTMLSpanElement).dataset.id);
 
         setTray((prev) => !prev);

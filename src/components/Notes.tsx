@@ -4,21 +4,14 @@ import Cards from "./Cards";
 import React, { useMemo } from "react";
 
 const Notes = ({ hide }: { hide: boolean }) => {
-  const notesWrapperStyles = useMemo(
+  const customStyles = useMemo(
     () => ({
-      flexGrow: 1,
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
       marginLeft: hide ? 96 : 281,
     }),
     [hide]
   );
   return (
-    <div
-      className="notes-wrapper"
-      style={notesWrapperStyles as React.CSSProperties}
-    >
+    <div className="notes-wrapper" style={customStyles as React.CSSProperties}>
       <NoteInput />
       {/* <CardMasonary data={data} setData={setData} /> */}
       <Cards />

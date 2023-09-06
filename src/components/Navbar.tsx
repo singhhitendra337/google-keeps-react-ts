@@ -1,12 +1,12 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "./styles/Navbar.css";
-import React, { useState } from "react";
+import React from "react";
 
-interface navprops {
+interface NavBarProps {
   hide: boolean;
 }
 
-const Navbar = ({ hide }: navprops): JSX.Element => {
+const Navbar = ({ hide }: NavBarProps): JSX.Element => {
   const navigate = useNavigate();
 
   const currentRoute = useLocation().pathname;
