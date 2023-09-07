@@ -14,7 +14,7 @@ const useNoteOptions = (card: StateInterface) => {
   }, []);
 
   const deleteHandler = useCallback(
-    (event: React.MouseEvent<HTMLDivElement>) => {
+    (event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
 
       notesDispatch({ type: "delete", payload: { id: card.id } });
@@ -23,7 +23,7 @@ const useNoteOptions = (card: StateInterface) => {
   );
 
   const copyHandler = useCallback(
-    (event: React.MouseEvent<HTMLDivElement>) => {
+    (event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
       const newId = Math.floor(Math.random() * 1000 + 5).toString();
       notesDispatch({ type: "add", payload: { ...card, id: newId } });
@@ -47,7 +47,7 @@ const useNoteOptions = (card: StateInterface) => {
   );
 
   const pinHandler = useCallback(
-    (event: React.MouseEvent<HTMLDivElement>) => {
+    (event: React.MouseEvent<HTMLButtonElement>) => {
       event.stopPropagation();
       notesDispatch({
         type: "update",

@@ -16,6 +16,19 @@
   margin: 0 5px;
 }
 
+.modal__save {
+  border: none;
+  background: transparent;
+  border-radius: 5px;
+  width: 50px;
+  margin-right: 5px;
+  height: 30px;
+}
+
+.modal__save:hover {
+  background-color: rgba(95, 99, 104, 0.039);
+}
+
 .modal-bottom-container {
   display: flex;
   justify-content: space-between;
