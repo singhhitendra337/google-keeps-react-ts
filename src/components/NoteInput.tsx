@@ -22,6 +22,8 @@ const NoteInput = () => {
     inputClickHandler,
     divClickHandler,
     inputAreaRef,
+    inputClick,
+    labelClick,
   } = useInput();
 
   console.log("noteinput rerendere");
@@ -76,8 +78,12 @@ const NoteInput = () => {
           {showDetails ? (
             <div className="options-container">
               <div className="left-options">
-                <div className="image-button">
-                  <label htmlFor="input-img" className="file-label">
+                <button className="image-button" type="button">
+                  <label
+                    htmlFor="input-img"
+                    className="file-label"
+                    onClick={labelClick}
+                  >
                     <span
                       id="span-icon"
                       className="material-symbols-outlined gray-color"
@@ -92,8 +98,9 @@ const NoteInput = () => {
                     accept="image/*"
                     style={{ display: "none" }}
                     onChange={imageParser}
+                    onClick={inputClick}
                   />
-                </div>
+                </button>
 
                 <ColorPalette
                   colorHandler={colorChangeHandler}

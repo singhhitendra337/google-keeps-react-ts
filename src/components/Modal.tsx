@@ -57,16 +57,18 @@ const Modal = () => {
             value={modalDescription}
           ></textarea>
         </div>
-        <div className="modal-options" style={{ display: "flex" }}>
+        <div
+          className="modal-options"
+          style={{ display: "flex", alignItems: "center" }}
+        >
           <div style={{ width: "70%" }}>
             <NoteOptions card={modal.modalData as StateInterface} />
           </div>
           <button
             id={`modal-save ${modal.modalData?.id}`}
-            className="save"
+            className="modal__save"
             style={{
               marginLeft: 136,
-              background: "transparent",
               cursor: "pointer",
             }}
             onClick={(event) => {

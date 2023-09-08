@@ -1,5 +1,8 @@
 .color-button {
   position: relative;
+  background: none;
+  border: none;
+  color: #5f6368;
 }
 
 .color-box {

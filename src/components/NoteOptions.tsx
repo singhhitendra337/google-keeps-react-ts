@@ -23,30 +23,30 @@ const NoteOptions = ({ card }: { card: StateInterface }) => {
       className="note-option-container"
       style={{ visibility: isClicked ? "visible" : undefined }}
     >
-      <div
+      <button
         className="material-symbols-outlined note-icon "
         onClick={deleteHandler}
       >
         delete
-      </div>
+      </button>
 
       <ColorPalette colorHandler={colorHandler} clickHandler={clickHandler} />
 
-      <div
+      <button
         className="material-symbols-outlined note-icon "
         onClick={copyHandler}
       >
         file_copy
-      </div>
+      </button>
 
-      <div className="img-container">
+      <button className="img-container note-icon">
         <label
           htmlFor={`options ${card.id}`}
           className="file-label-options"
           onClick={labelClick}
           style={{ padding: 0 }}
         >
-          <div className="material-symbols-outlined note-icon">image</div>
+          <span className="material-symbols-outlined note-icon">image</span>
         </label>
         <input
           type="file"
@@ -56,11 +56,11 @@ const NoteOptions = ({ card }: { card: StateInterface }) => {
           onClick={inputClick}
           onChange={imageHandler}
         />
-      </div>
+      </button>
 
-      <div className="material-icons note-icon" onClick={pinHandler}>
+      <button className="material-icons note-icon" onClick={pinHandler}>
         turned_in{!card.isPinned ? "_not" : ""}
-      </div>
+      </button>
     </div>
   );
 };

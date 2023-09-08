@@ -56,7 +56,7 @@ const ColorPalette = ({
   };
 
   return (
-    <div
+    <button
       className="color-button"
       onClick={(event) => {
         event.stopPropagation();
@@ -111,7 +111,7 @@ const ColorPalette = ({
           })}
         </div>
       )}
-    </div>
+    </button>
   );
 };
 

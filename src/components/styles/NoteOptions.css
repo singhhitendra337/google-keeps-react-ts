@@ -17,6 +17,9 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  background: none;
+  border: none;
+  color: #5f6368;
 }
 
 .note-icon:hover {

@@ -51,6 +51,20 @@ const useInput = () => {
     []
   );
 
+  const labelClick = useCallback(
+    (event: React.MouseEvent<HTMLLabelElement>) => {
+      event.stopPropagation();
+    },
+    []
+  );
+
+  const inputClick = useCallback(
+    (event: React.MouseEvent<HTMLInputElement>) => {
+      event.stopPropagation();
+    },
+    []
+  );
+
   const imageParser = useCallback((event: ChangeEvent<HTMLInputElement>) => {
     const imageContent = event.target.files;
     if (!imageContent) return;
@@ -177,6 +191,8 @@ const useInput = () => {
       togglePin,
       inputClickHandler,
       divClickHandler,
+      labelClick,
+      inputClick,
       inputAreaRef,
     }),
     [
@@ -194,6 +210,8 @@ const useInput = () => {
       togglePin,
       inputClickHandler,
       divClickHandler,
+      labelClick,
+      inputClick,
       inputAreaRef,
     ]
   );
