@@ -12,6 +12,21 @@ header {
   display: flex;
 }
 
+.mid-icons {
+  margin-left: 25px;
+  color: #7d7d7d;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.mid-header-icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  /* width: 120px; */
+}
+
 .hamburger {
   display: flex;
   justify-content: center;
@@ -22,6 +37,9 @@ header {
   padding: 12px;
   margin: 0 4px;
   cursor: pointer;
+  border: none;
+  outline: none;
+  background-color: transparent;
 }
 
 .hamburger:hover {
@@ -63,8 +81,9 @@ header {
   display: flex;
   flex-grow: 1;
   justify-content: space-between;
-  margin-left: 30px;
+  /* margin-left: 30px; */
   align-items: center;
+  padding-left: 10px;
 }
 
 .search {
@@ -146,7 +165,7 @@ header {
   justify-content: flex-end;
   align-items: center;
   margin-right: 15px;
-  margin-left: 100px;
+  margin-left: 13px;
 }
 
 .apps {
@@ -171,6 +190,17 @@ header {
   height: 48px;
 }
 
+.dark-mode {
+  border: none;
+  background: none;
+  cursor: pointer;
+  color: #5f6368;
+  opacity: 1;
+  width: 48px;
+
+  height: 48px;
+}
+
 .apps:hover,
 .account:hover,
 .refresh:hover,
@@ -179,6 +209,10 @@ header {
   border-radius: 50%;
   background-color: rgba(0, 0, 0, 0.1);
   color: black;
+}
+
+.dark-placeholder::placeholder {
+  color: white;
 }
 
 @media (max-width: 1330px) {

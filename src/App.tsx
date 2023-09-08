@@ -13,8 +13,14 @@ import useHeader from "./hooks/useHeader";
 import useModal from "./hooks/useModal";
 
 function App() {
-  const { hide, searchString, toggleHide, searchStringChangeHandler } =
-    useHeader();
+  const {
+    hide,
+    searchString,
+    toggleHide,
+    searchStringChangeHandler,
+    darkMode,
+    toggleDarkMode,
+  } = useHeader();
 
   const [notesData, notesDispatch] = useLocalStorage([]);
 
@@ -27,12 +33,22 @@ function App() {
       notesData,
       notesDispatch,
       searchString,
+      darkMode,
+      toggleDarkMode,
     }),
-    [modal, modalChangeHanlder, notesData, notesDispatch, searchString]
+    [
+      modal,
+      modalChangeHanlder,
+      notesData,
+      notesDispatch,
+      searchString,
+      darkMode,
+      toggleDarkMode,
+    ]
   );
 
   return (
-    <div className="App">
+    <div className={`App ${darkMode ? "dark" : ""}`}>
       <DataContext.Provider value={contextData}>
         <Header
           toggleHide={toggleHide}

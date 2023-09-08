@@ -5,8 +5,36 @@ import NoteImage from "./NoteImage";
 import NoteOptions from "./NoteOptions";
 import { DataContextInterface, StateInterface } from "../interfaces/interfaces";
 
+const light_colors = [
+  "#faafa8",
+  "#f39f76",
+  "#fff8b8",
+  "#e2f6d3",
+  "#b4ddd3",
+  "#d4e4ed",
+  "#aeccdc",
+  "#d3bfdb",
+  "#f6e2dd",
+  "#e9e3d4",
+  "#d7d7d7",
+];
+
+const dark_colors = [
+  "#77172e",
+  "#692b17",
+  "#7c4a03",
+  "#264d3b",
+  "#0c625d",
+  "#256377",
+  "#284255",
+  "#472e5b",
+  "#6c394f",
+  "#4b443a",
+  "#472e5b",
+];
+
 const Modal = () => {
-  const { notesDispatch, modal, modalChangeHanlder } = useContext(
+  const { notesDispatch, modal, modalChangeHanlder, darkMode } = useContext(
     DataContext
   ) as DataContextInterface;
   useEffect(() => {
@@ -37,7 +65,11 @@ const Modal = () => {
         onClick={(event) => {
           event.stopPropagation();
         }}
-        style={{ backgroundColor: modal.modalData?.color }}
+        style={{
+          backgroundColor: darkMode
+            ? dark_colors[Number(modal.modalData?.color)]
+            : light_colors[Number(modal.modalData?.color)],
+        }}
       >
         <div className="modal-content">
           <NoteImage image={modal.modalData?.image as string} />

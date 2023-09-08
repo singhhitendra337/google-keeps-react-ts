@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "./styles/ColorPalette.css";
+import DataContext from "../store/data-context";
+import { DataContextInterface } from "../interfaces/interfaces";
 
 interface ColorPaletteProps {
   colorHandler: (color: string) => void;
@@ -14,17 +16,34 @@ const ColorPalette = ({
 }: ColorPaletteProps) => {
   const [tray, setTray] = useState(false);
 
-  const colors = [
-    "#f39f76",
+  const { darkMode } = useContext(DataContext) as DataContextInterface;
+
+  const light_colors = [
     "#faafa8",
-    "#d7d7d7",
-    "#b4ddd3",
+    "#f39f76",
     "#fff8b8",
     "#e2f6d3",
+    "#b4ddd3",
+    "#d4e4ed",
     "#aeccdc",
     "#d3bfdb",
     "#f6e2dd",
     "#e9e3d4",
+    "#d7d7d7",
+  ];
+
+  const dark_colors = [
+    "#77172e",
+    "#692b17",
+    "#7c4a03",
+    "#264d3b",
+    "#0c625d",
+    "#256377",
+    "#284255",
+    "#472e5b",
+    "#6c394f",
+    "#4b443a",
+    "#472e5b",
   ];
 
   useEffect(() => {
@@ -47,7 +66,14 @@ const ColorPalette = ({
     console.log("reacheed here");
     const targetDiv = event.target as HTMLDivElement;
 
-    colorHandler(targetDiv.dataset.color as string);
+    if (darkMode)
+      colorHandler(
+        dark_colors.findIndex((c) => c === targetDiv.dataset.color).toString()
+      );
+    else
+      colorHandler(
+        light_colors.findIndex((c) => c === targetDiv.dataset.color).toString()
+      );
 
     // notesDispatch({
     //   type: "update",
@@ -98,17 +124,29 @@ const ColorPalette = ({
               format_color_reset
             </span>
           </div>
-          {colors.map((color) => {
-            return (
-              <div
-                className="color-box"
-                style={{ backgroundColor: color }}
-                key={color}
-                onClick={colorClickHandler}
-                data-color={color}
-              ></div>
-            );
-          })}
+          {!darkMode
+            ? light_colors.map((color) => {
+                return (
+                  <div
+                    className="color-box"
+                    style={{ backgroundColor: color }}
+                    key={color}
+                    onClick={colorClickHandler}
+                    data-color={color}
+                  ></div>
+                );
+              })
+            : dark_colors.map((color) => {
+                return (
+                  <div
+                    className="color-box"
+                    style={{ backgroundColor: color }}
+                    key={color}
+                    onClick={colorClickHandler}
+                    data-color={color}
+                  ></div>
+                );
+              })}
         </div>
       )}
     </button>

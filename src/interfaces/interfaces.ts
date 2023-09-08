@@ -35,4 +35,6 @@ export interface DataContextInterface {
   notesDispatch: React.Dispatch<ActionInterface>;
   modalChangeHanlder: (payload: ModalInterface) => void;
   searchString: string;
+  darkMode: boolean;
+  toggleDarkMode: () => void;
 }
