@@ -45,6 +45,17 @@
 .active {
   background-color: #feefc3;
 }
+.dark-active {
+  background-color: #41331c;
+}
+
+.dark-nav {
+  background-color: #202124;
+}
+
+.dark-nav:hover {
+  background-color: #28292c;
+}
 
 .nav-text {
   margin-left: 20px;

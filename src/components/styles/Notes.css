@@ -208,6 +208,14 @@ input {
   overflow-y: auto;
 }
 
+.input1-dark::placeholder {
+  color: #5f6368;
+}
+
+.input2-dark::placeholder {
+  color: #5f6368;
+}
+
 @media (max-width: 890px) {
   .newDiv {
     width: 500px;

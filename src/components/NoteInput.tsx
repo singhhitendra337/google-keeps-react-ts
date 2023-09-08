@@ -1,9 +1,11 @@
-import React, { useMemo } from "react";
+import React, { useContext, useMemo } from "react";
 
 import "./styles/Notes.css";
 import ColorPalette from "./ColorPalette";
 import NoteImage from "./NoteImage";
 import useInput from "../hooks/useInput";
+import DataContext from "../store/data-context";
+import { DataContextInterface } from "../interfaces/interfaces";
 
 const NoteInput = () => {
   const {
@@ -26,11 +28,17 @@ const NoteInput = () => {
     labelClick,
   } = useInput();
 
+  const { darkMode } = useContext(DataContext) as DataContextInterface;
+
   console.log("noteinput rerendere");
 
   const inputStyles = useMemo(() => {
-    return { backgroundColor: selectedColor };
-  }, [selectedColor]);
+    return {
+      backgroundColor:
+        darkMode && selectedColor === "white" ? "#202124" : selectedColor,
+      borderColor: darkMode ? "#5f6368" : "",
+    };
+  }, [selectedColor, darkMode]);
 
   return (
     <div className="top-container">
@@ -56,7 +64,7 @@ const NoteInput = () => {
               <input
                 type="text"
                 id="titlenew"
-                className="input1"
+                className={`input1 ${darkMode ? "input1-dark" : ""}`}
                 placeholder="Title"
                 onChange={titleChangeHandler}
                 value={title}
@@ -68,7 +76,7 @@ const NoteInput = () => {
               id="description"
               className={`input2 hidden-input ${
                 showDetails ? "input2-active" : ""
-              }`}
+              } ${darkMode ? "input2-dark" : ""}`}
               placeholder="Take a Note..."
               onChange={descriptionChangeHandler}
               onClick={inputClickHandler}
