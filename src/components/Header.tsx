@@ -99,7 +99,7 @@ const Header = ({ toggleHide, searchStringChangeHandler }: HeaderProps) => {
             className="material-symbols-outlined dark-mode"
             onClick={toggleDarkMode}
           >
-            dark_mode
+            {!darkMode ? "dark_mode" : "light_mode"}
           </button>
           <button className="material-symbols-outlined apps">apps</button>
           <button className="material-symbols-outlined account">
