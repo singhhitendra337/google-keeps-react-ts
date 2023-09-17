@@ -7,6 +7,34 @@ import useInput from "../hooks/useInput";
 import DataContext from "../store/data-context";
 import { DataContextInterface } from "../interfaces/interfaces";
 
+const light_colors = [
+  "#faafa8",
+  "#f39f76",
+  "#fff8b8",
+  "#e2f6d3",
+  "#b4ddd3",
+  "#d4e4ed",
+  "#aeccdc",
+  "#d3bfdb",
+  "#f6e2dd",
+  "#e9e3d4",
+  "#d7d7d7",
+];
+
+const dark_colors = [
+  "#77172e",
+  "#692b17",
+  "#7c4a03",
+  "#264d3b",
+  "#0c625d",
+  "#256377",
+  "#284255",
+  "#472e5b",
+  "#6c394f",
+  "#4b443a",
+  "#472e5b",
+];
+
 const NoteInput = () => {
   const {
     title,
@@ -32,10 +60,19 @@ const NoteInput = () => {
 
   console.log("noteinput rerendere");
 
+  // console.log("selected color", selectedColor);
   const inputStyles = useMemo(() => {
+    let bgColor = "white";
+
+    if (darkMode) {
+      if (selectedColor === "white") bgColor = "#202124";
+      else bgColor = dark_colors[Number(selectedColor)];
+    } else {
+      if (selectedColor !== "white")
+        bgColor = light_colors[Number(selectedColor)];
+    }
     return {
-      backgroundColor:
-        darkMode && selectedColor === "white" ? "#202124" : selectedColor,
+      backgroundColor: bgColor,
       borderColor: darkMode ? "#5f6368" : "",
     };
   }, [selectedColor, darkMode]);
